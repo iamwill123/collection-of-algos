@@ -1,0 +1,13 @@
+version: '3'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        APP_NAME: collection-of-algos
+        NODE_ENV: development
+    ports:
+      - '3000:3000'
+    volumes:
+      - .:/app

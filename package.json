@@ -1,0 +1,19 @@
+{
+	"name": "collection-of-algos",
+	"version": "1.0.0",
+	"source": "src/index.ts",
+	"main": "dist/index.js",
+	"module": "dist/module.js",
+	"types": "dist/types.d.ts",
+	"license": "MIT",
+	"scripts": {
+		"build": "parcel build",
+		"dev": "parcel watch"
+	},
+	"devDependencies": {
+		"@parcel/packager-ts": "2.8.3",
+		"@parcel/transformer-typescript-types": "2.8.3",
+		"parcel": "latest",
+		"typescript": ">=3.0.0"
+	}
+}
