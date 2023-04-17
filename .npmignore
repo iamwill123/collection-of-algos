@@ -12,3 +12,9 @@ docs/
 examples/
 documentation/
 coverage/
+.env
+.parcel-cache
+.vscode
+Dockerfile
+docker-compose.yml
+docker-compose.override.yml
