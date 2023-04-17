@@ -1,0 +1,17 @@
+{
+	"compilerOptions": {
+		"lib": ["es6", "dom"],
+		"target": "es6",
+		"module": "esnext",
+		"moduleResolution": "node",
+		"strict": true,
+		"esModuleInterop": true,
+		"declaration": true,
+		"outDir": "./dist",
+		"baseUrl": ".",
+		"paths": {
+			"@/*": ["src/*"]
+		}
+	},
+	"include": ["src/**/*", "test/sorts/bubble/index.test.ts"]
+}

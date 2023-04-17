@@ -1,0 +1,14 @@
+# files to ignore
+*.log
+*.tsbuildinfo
+*.ts
+*.map
+
+# directories to ignore
+node_modules/
+dist/
+test/
+docs/
+examples/
+documentation/
+coverage/

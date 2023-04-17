@@ -22,5 +22,5 @@ docker-compose up
 docker-compose down
 ```
 
-##### Head to local server (Ctrl-C to stop)
+##### local server to test (Ctrl-C to stop)
 http://localhost:3000
