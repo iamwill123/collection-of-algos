@@ -10,17 +10,17 @@ The space complexity of bubble sort is O(1).
 - The function returns the sorted array.
 */
 
+import { howLongExecTook, isAsc, startTime, endTime } from '@/helpers'
 import { ArrayInput, SortInput, SortOutput } from '@/types/sorts'
 
 const isAnObj = (x: number, arr: ArrayInput): boolean =>
 	typeof arr[x] === 'object'
 
 function bubble(input: SortInput): SortOutput {
+	const _startTime = startTime()
 	const { arr, order = 'asc', key = '' } = input
 
 	const n: number = arr.length
-	const startTimer = Date.now()
-	const isAsc = order === 'asc'
 
 	if (n <= 1) {
 		return { arr, key, order, n, execTime: 0 }
@@ -28,8 +28,8 @@ function bubble(input: SortInput): SortOutput {
 	if (isAnObj(0, arr) && !key) throw new Error('key is required')
 	for (let i = 0; i < n; i++) {
 		for (let j = 0; j < n - i - 1; j++) {
-			const leftNum = isAsc ? j : j + 1
-			const rightNum = isAsc ? j + 1 : j
+			const leftNum = isAsc(order) ? j : j + 1
+			const rightNum = isAsc(order) ? j + 1 : j
 
 			let _leftNum = isAnObj(leftNum, arr) ? arr[leftNum][key] : arr[leftNum]
 			let _rightNum = isAnObj(rightNum, arr)
@@ -41,8 +41,8 @@ function bubble(input: SortInput): SortOutput {
 			}
 		}
 	}
-	const endTimer = Date.now()
-	const execTimeInMs = endTimer - startTimer
+	const _endTime = endTime()
+	const execTimeInMs = howLongExecTook(_startTime, _endTime)
 	return { arr, key, order, n, execTime: execTimeInMs }
 }
 
