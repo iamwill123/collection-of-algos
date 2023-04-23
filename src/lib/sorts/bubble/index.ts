@@ -10,41 +10,31 @@ The space complexity of bubble sort is O(1).
 - The function returns the sorted array.
 */
 
-type SortOrder = 'asc' | 'desc'
-type ArrayOfObjects = {
-	[key: string]: number | string
-}[]
-type SortByKey = string
+import { ArrayInput, SortInput, SortOutput } from '@/types/sorts'
 
-type SortResult = {
-	arr: number[] | ArrayOfObjects // the sorted array
-	key: SortByKey // the key to sort by
-	order: SortOrder // the order to sort by
-	n: number // the number of elements in the array
-	execTime: number // the execution time in milliseconds
-}
+const isAnObj = (x: number, arr: ArrayInput): boolean =>
+	typeof arr[x] === 'object'
 
-function bubble(
-	arr: any[] | ArrayOfObjects,
-	key: SortByKey = '',
-	order: SortOrder = 'asc'
-): SortResult {
+function bubble(input: SortInput): SortOutput {
+	const { arr, order = 'asc', key = '' } = input
+
 	const n: number = arr.length
 	const startTimer = Date.now()
 	const isAsc = order === 'asc'
-	const isAnObj = (x: number): boolean => typeof arr[x] === 'object'
 
 	if (n <= 1) {
 		return { arr, key, order, n, execTime: 0 }
 	}
-	if (isAnObj(0) && !key) throw new Error('key is required')
+	if (isAnObj(0, arr) && !key) throw new Error('key is required')
 	for (let i = 0; i < n; i++) {
 		for (let j = 0; j < n - i - 1; j++) {
 			const leftNum = isAsc ? j : j + 1
 			const rightNum = isAsc ? j + 1 : j
 
-			let _leftNum = isAnObj(leftNum) ? arr[leftNum][key] : arr[leftNum]
-			let _rightNum = isAnObj(rightNum) ? arr[rightNum][key] : arr[rightNum]
+			let _leftNum = isAnObj(leftNum, arr) ? arr[leftNum][key] : arr[leftNum]
+			let _rightNum = isAnObj(rightNum, arr)
+				? arr[rightNum][key]
+				: arr[rightNum]
 
 			if (_leftNum > _rightNum) {
 				;[arr[j], arr[j + 1]] = [arr[j + 1], arr[j]] // swap
@@ -57,14 +47,3 @@ function bubble(
 }
 
 export default bubble
-
-function nativeSortByAge(
-	arr: { name: string; age: number }[],
-	order: SortOrder = 'asc'
-) {
-	// Using JS native sort in ascending order
-	const sortedByAge = arr.sort((a, b) =>
-		order === 'asc' ? a.age - b.age : b.age - a.age
-	)
-	return sortedByAge
-}
