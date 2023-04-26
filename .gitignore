@@ -24,3 +24,5 @@ yarn-error.log*
 debug.log
 .parcel-cache
 .env
+.parcel-cache
+DEPLOYMENT.md
