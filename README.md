@@ -7,16 +7,16 @@ First install the package
 
 ``` bash
 # using npm
-npm install collection-of-algorithms
+npm install collection-of-algos
 
 # using yarn
-yarn add collection-of-algorithms
+yarn add collection-of-algos
 ```
 
 Import the functions you want in your TypeScript or JavaScript project
 
 ``` javascript
-import { bubbleSort } from 'collection-of-algorithms'
+import { bubbleSort } from 'collection-of-algos'
 
 const sortedArray = bubbleSort([3, 2, 1])
 console.log(sortedArray) // [1, 2, 3]
