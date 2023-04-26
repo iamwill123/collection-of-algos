@@ -1,11 +1,15 @@
 type SortOrder = 'asc' | 'desc' | 'ascending' | 'descending' | string
 type ArrayOfObjects = {
-	[key: string]: number | string
+	[key: string | number]: number | string
 }[]
+type Object = {
+	[key: string | number]: number | string
+}
 type SortByKey = string
 
-type ArrayInput = number[] | ArrayOfObjects | any[]
-
+type ArrayInput = number[] | string[] | ArrayOfObjects | any[]
+type ArrayOutput = number[] | string[] | ArrayOfObjects | any[]
+type NumberOrObject = number | string | Object | any
 type SortOutput = {
 	arr: ArrayInput // the sorted array
 	key?: SortByKey // the key to sort by
@@ -24,6 +28,8 @@ export {
 	ArrayOfObjects,
 	SortByKey,
 	ArrayInput,
+	ArrayOutput,
 	SortOutput,
 	SortInput,
+	NumberOrObject,
 }

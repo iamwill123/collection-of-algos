@@ -10,14 +10,11 @@ The space complexity of bubble sort is O(1).
 - The function returns the sorted array.
 */
 
-import { howLongExecTook, isAsc, startTime, endTime } from '@/helpers'
-import { ArrayInput, SortInput, SortOutput } from '@/types/sorts'
-
-const isAnObj = (x: number, arr: ArrayInput): boolean =>
-	typeof arr[x] === 'object'
+import { howLongExecTook, isAsc, startTime, endTime, isAnObj } from '@/helpers'
+import { SortInput, SortOutput } from '@/types/sorts'
 
 function bubble(input: SortInput): SortOutput {
-	const _startTime = startTime()
+	const _s = startTime()
 	const { arr, order = 'asc', key = '' } = input
 
 	const n: number = arr.length
@@ -41,8 +38,8 @@ function bubble(input: SortInput): SortOutput {
 			}
 		}
 	}
-	const _endTime = endTime()
-	const execTimeInMs = howLongExecTook(_startTime, _endTime)
+	const _e = endTime()
+	const execTimeInMs = howLongExecTook(_s, _e)
 	return { arr, key, order, n, execTime: execTimeInMs }
 }
 
