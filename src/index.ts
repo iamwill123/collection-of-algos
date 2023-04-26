@@ -1,5 +1,4 @@
-import bubble from "./lib/sorts/bubble";
+import bubbleSort from './lib/sorts/bubble'
+import nativeSort from './lib/sorts/native'
 
-export {
-  bubble as bubbleSort
-}
+export { nativeSort, bubbleSort }
