@@ -1,6 +1,6 @@
 {
 	"name": "collection-of-algos",
-	"version": "1.0.7",
+	"version": "1.0.8",
 	"description": "A collection of mostly common algorithms, data structures with visualizations and explanations.",
 	"author": {
 		"name": "William Pei Yuan",
@@ -16,7 +16,11 @@
 		"build": "parcel build src/index.ts",
 		"watch": "parcel watch",
 		"test": "jest",
-		"test-coverage": "jest --coverage"
+		"test-coverage": "jest --coverage",
+		"deploy": "yarn version --patch && yarn build && npm publish"
+	},
+	"dependencies": {
+		"@/helpers": "^1.0.0"
 	},
 	"devDependencies": {
 		"@parcel/packager-ts": "2.8.3",
