@@ -9,9 +9,16 @@
 		"declaration": true,
 		"outDir": "./dist",
 		"baseUrl": ".",
-		"paths": {
-			"@/*": ["src/*"]
-		}
+		// "paths": {
+		// 	"~*": ["src/*"]
+		// },
+		"sourceMap": true, // Add source map generation
+		"resolveJsonModule": true, // Allow importing JSON files
+		"declarationMap": true, // Generate declaration maps
+		"allowSyntheticDefaultImports": true, // Allow default imports from modules with no default export
+		"strictNullChecks": true, // Enforce null checks
+		"noImplicitAny": true // Enforce explicit types for all variables and function parameters
 	},
-	"include": ["src/**/*", "test/sorts/bubble/index.test.ts"]
+	"include": ["src/**/*"],
+	"exclude": ["**/*.test.ts"] // Exclude test files
 }

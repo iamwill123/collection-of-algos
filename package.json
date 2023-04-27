@@ -17,7 +17,7 @@
 		"watch": "parcel watch",
 		"test": "jest",
 		"test-coverage": "jest --coverage",
-		"deploy": "yarn version --patch && yarn build && npm publish"
+		"deploy": "yarn version --patch && yarn build && yarn deploy"
 	},
 	"devDependencies": {
 		"@parcel/packager-ts": "2.8.3",

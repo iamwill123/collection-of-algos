@@ -10,8 +10,14 @@ The space complexity of bubble sort is O(1).
 - The function returns the sorted array.
 */
 
-import { howLongExecTook, isAsc, startTime, endTime, isAnObj } from '@/helpers'
-import { SortInput, SortOutput } from '@/types/sorts'
+import {
+	howLongExecTook,
+	isAsc,
+	startTime,
+	endTime,
+	isAnObj,
+} from '../../helpers'
+import { SortInput, SortOutput } from '../../../types/sorts'
 
 function bubble(input: SortInput): SortOutput {
 	const _s = startTime()

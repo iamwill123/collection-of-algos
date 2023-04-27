@@ -5,13 +5,13 @@ import {
 	isAsc,
 	isNumber,
 	startTime,
-} from '@/helpers'
+} from '../../helpers'
 import {
 	ArrayOutput,
 	NumberOrObject,
 	SortInput,
 	SortOutput,
-} from '@/types/sorts'
+} from '../../../types/sorts'
 
 function native(input: SortInput): SortOutput {
 	const _s = startTime()

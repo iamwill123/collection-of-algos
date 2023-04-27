@@ -1,4 +1,4 @@
-import { ArrayInput, SortOrder } from '@/types/sorts'
+import { ArrayInput, SortOrder } from '../../types/sorts'
 const startTime = () => Date.now()
 const endTime = () => Date.now()
 const howLongExecTook = (_: number, __: number) => __ - _

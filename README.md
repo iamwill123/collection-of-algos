@@ -1,7 +1,7 @@
-#### A continuing collection of good to know algorithms mainly in JS.
+### A continuing collection of good to know algorithms mainly in JS.
 It's also a library that can be used in your projects. It contains algos that are both common and un-common.
 
-#### To use this package in your project
+### To use this package in your project
 
 First install the package
 
@@ -13,13 +13,34 @@ npm install collection-of-algos
 yarn add collection-of-algos
 ```
 
-Import the functions you want in your TypeScript or JavaScript project
+Import the functions you want in your TypeScript or JavaScript project, see the test cases for usage examples.
 
 ``` javascript
-import { bubbleSort } from 'collection-of-algos'
+import { bubbleSort, nativeSort } from 'collection-of-algos'
 
-const sortedArray = bubbleSort([3, 2, 1])
-console.log(sortedArray) // [1, 2, 3]
+const obj1 = { arr: [5, 3, 1, 4, 2] }
+const { arr: arrOfNums } =  bubbleSort(obj1)
+
+console.log(arrOfNums) // [1, 2, 3, 4, 5]
+
+const obj2 = {
+  arr: [
+    { name: 'John', age: 23 },
+    { name: 'Mike', age: 32 },
+    { name: 'Chris', age: 11 },
+    { name: 'Nick', age: 19 },
+  ],
+  key: 'age',
+}
+const { arr: arrOfObjs } = nativeSort(obj2)
+
+console.log(arrOfObjs)
+// [
+//   { name: 'Chris', age: 11 },
+//   { name: 'Nick', age: 19 },
+//   { name: 'John', age: 23 },
+//   { name: 'Mike', age: 32 },
+// ]
 
 ```
 
