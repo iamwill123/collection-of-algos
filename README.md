@@ -1,6 +1,9 @@
 ### A continuing collection of good to know algorithms mainly in JS.
 It's also a library that can be used in your projects. It contains algos that are both common and un-common.
 
+[![codecov](https://codecov.io/gh/iamwill123/collection-of-algos/branch/main/graph/badge.svg?token=ABC123)](https://codecov.io/gh/iamwill123/collection-of-algos)
+
+
 ### To use this package in your project
 
 First install the package
