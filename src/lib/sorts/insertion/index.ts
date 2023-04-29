@@ -19,6 +19,38 @@ import {
 } from '../../helpers'
 import { NumberOrObject, SortInput, SortOutput } from '../../../types/sorts'
 
+function insertion(input: SortInput): SortOutput {
+	const _s = startTime()
+	const { arr, order = 'asc', key = '' } = input
+	const n: number = arr.length
+
+	if (n <= 1) {
+		return { arr, key, order, n, execTime: 0 }
+	}
+
+	for (let i = 1; i < n; i++) {
+		let currentVal = arr[i]
+		// j is the index to the left of the current index
+		let j = i - 1
+
+		// Go through the "sub-array" from right to left, comparing the current value to the next value to the left until we find the correct position for the current value, inserting larger numbers to the right, and inserting the current value to the right of the smallest number, until we reach the end of the array at 0.
+		// if j is greater than or equal to 0 and the order is ascending otherwise descending
+		while (j >= 0 && compare(arr[j], currentVal, key, order) > 0) {
+			// shift larger numbers to the right
+			arr[j + 1] = arr[j]
+			j--
+		}
+
+		// insert to the right of the smallest number
+		arr[j + 1] = currentVal
+	}
+
+	const _e = endTime()
+	const execTimeInMs = howLongExecTook(_s, _e)
+	return { arr, key, order, n, execTime: execTimeInMs }
+}
+
+// compare is a helper function that compares two numbers or two objects by a key and order (asc or desc) and returns a number (-1, 0, or 1) based on the comparison.
 function compare(
 	a: NumberOrObject,
 	b: NumberOrObject,
@@ -37,33 +69,6 @@ function compare(
 	} else {
 		throw new Error(`Invalid order: ${order}.`)
 	}
-}
-
-function insertion(input: SortInput): SortOutput {
-	const _s = startTime()
-	const { arr, order = 'asc', key = '' } = input
-
-	const n: number = arr.length
-
-	for (let i = 1; i < n; i++) {
-		let currentVal = arr[i]
-		// j is the index to the left of the current index
-		let j = i - 1
-		// if j is greater than or equal to 0 and the order is ascending otherwise descending
-		while (j >= 0 && compare(arr[j], currentVal, key, order) > 0) {
-			// shift larger numbers to the right
-			arr[j + 1] = arr[j]
-			// go through entire leftOfStartIndex portion of the sub-arrary
-			j--
-		}
-
-		// insert to the right of the smallest number
-		arr[j + 1] = currentVal
-	}
-
-	const _e = endTime()
-	const execTimeInMs = howLongExecTook(_s, _e)
-	return { arr, key, order, n, execTime: execTimeInMs }
 }
 
 export default insertion

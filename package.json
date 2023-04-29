@@ -16,7 +16,7 @@
 		"build": "parcel build src/index.ts",
 		"watch": "parcel watch",
 		"test": "jest",
-		"test-coverage": "jest --coverage",
+		"test:coverage": "jest --coverage",
 		"deploy": "npm version patch && yarn build && yarn publish"
 	},
 	"devDependencies": {

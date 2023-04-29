@@ -14,8 +14,11 @@ import { SortInput, SortOutput } from '../../../types/sorts'
 function selection(input: SortInput): SortOutput {
 	const _s = startTime()
 	const { arr, order = 'asc', key = '' } = input
-
 	const n: number = arr.length
+
+	if (n <= 1) {
+		return { arr, key, order, n, execTime: 0 }
+	}
 
 	for (let k = 0; k < n - 1; k++) {
 		// initialize min to k, the first element

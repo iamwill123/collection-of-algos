@@ -19,4 +19,4 @@ jobs:
     - name: Install Dependencies
       run: yarn install
     - name: Run Unit Tests
-      run: yarn test-coverage
+      run: yarn test:coverage

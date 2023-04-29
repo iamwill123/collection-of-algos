@@ -22,12 +22,12 @@ import { SortInput, SortOutput } from '../../../types/sorts'
 function bubble(input: SortInput): SortOutput {
 	const _s = startTime()
 	const { arr, order = 'asc', key = '' } = input
-
 	const n: number = arr.length
 
 	if (n <= 1) {
 		return { arr, key, order, n, execTime: 0 }
 	}
+
 	if (isAnObj(0, arr) && !key) throw new Error('key is required')
 	for (let i = 0; i < n; i++) {
 		for (let j = 0; j < n - i - 1; j++) {
