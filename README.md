@@ -1,8 +1,8 @@
-### A continuing collection of good to know algorithms mainly in JS.
+### A continuing collection of good to know algorithms mainly in JS
+
 It's also a library that can be used in your projects. It contains algos that are both common and un-common.
 
-[![codecov](https://codecov.io/gh/iamwill123/collection-of-algos/branch/main/graph/badge.svg?token=ABC123)](https://codecov.io/gh/iamwill123/collection-of-algos)
-
+[![codecov](https://codecov.io/gh/iamwill123/collection-of-algos/branch/main/graph/badge.svg?token=ABC123)](https://codecov.io/gh/iamwill123/collection-of-algos) [![test](https://github.com/iamwill123/collection-of-algos/actions/workflows/run-unit-tests.yml/badge.svg)](https://github.com/iamwill123/collection-of-algos/actions/workflows/run-unit-tests.yml) [![License: MIT](https://img.shields.io/badge/License-MIT-red.svg)](https://opensource.org/licenses/MIT)
 
 ### To use this package in your project
 
@@ -84,4 +84,8 @@ yarn coverage
 
 #### local server to test functions locally (Ctrl-C to stop)
 
-http://localhost:3000
+<http://localhost:3000>
+
+#### Connect with me
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/williampeiyuan/)
