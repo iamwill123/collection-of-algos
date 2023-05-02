@@ -1,4 +1,4 @@
-import { ArrayInput, SortOrder } from '../../types/sorts'
+import { ArrayInput, GenerateRandomNumbers, SortOrder } from '../../types/sorts'
 const startTime = () => Date.now()
 const endTime = () => Date.now()
 const howLongExecTook = (_: number, __: number) => __ - _
@@ -10,4 +10,25 @@ const isAnObj = (idx: number, arr: ArrayInput): boolean =>
 const isNumber = (idx: number, arr: ArrayInput): boolean =>
 	typeof arr[idx] === 'number'
 
-export { startTime, endTime, howLongExecTook, isAsc, isDesc, isAnObj, isNumber }
+// O(1) time complexity, O(n) space complexity
+// usage const randomNumbers = generateRandomNumbers(5, 1, 10);
+
+const generateRandomNumbers = ({
+	n = 0,
+	min = 0,
+	max = 0,
+}: GenerateRandomNumbers = {}): number[] =>
+	Array.from({ length: n }, () =>
+		Math.floor(Math.random() * (max - min + 1) + min)
+	)
+
+export {
+	startTime,
+	endTime,
+	howLongExecTook,
+	isAsc,
+	isDesc,
+	isAnObj,
+	isNumber,
+	generateRandomNumbers,
+}
