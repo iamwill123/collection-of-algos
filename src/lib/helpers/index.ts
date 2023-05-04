@@ -1,4 +1,5 @@
 import { ArrayInput, GenerateRandomNumbers, SortOrder } from '../../types/sorts'
+
 const startTime = () => Date.now()
 const endTime = () => Date.now()
 const howLongExecTook = (_: number, __: number) => __ - _
@@ -10,6 +11,8 @@ const isAnObj = (idx: number, arr: ArrayInput): boolean =>
 const isNumber = (idx: number, arr: ArrayInput): boolean =>
 	typeof arr[idx] === 'number'
 
+// O(n) time complexity, O(1) space complexity
+const findMaxNumber = (arr: ArrayInput): number => Math.max(...arr)
 // O(1) time complexity, O(n) space complexity
 // usage const randomNumbers = generateRandomNumbers(5, 1, 10);
 
@@ -31,4 +34,5 @@ export {
 	isAnObj,
 	isNumber,
 	generateRandomNumbers,
+	findMaxNumber,
 }
