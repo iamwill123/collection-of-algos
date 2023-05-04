@@ -43,6 +43,9 @@ button {
 button:hover {
 	background-color: #8e3e82;
 }
+.button--active {
+	border: 2px dotted white;
+}
 
 @keyframes sorting {
 	0% {
