@@ -1,4 +1,7 @@
 import { ArrayInput, SortInput } from '../types'
+import BarComponent from './Bar/Component'
+import { IBarComponent } from './Bar/types'
+import ButtonComponent from './Button/Component'
 
 interface SortVisualizerProps {
 	sortProps: SortInput
@@ -12,10 +15,20 @@ class BubbleSortVisualizer {
 	private sortProps: SortInput = { arr: [] }
 	private container: HTMLElement = null as unknown as HTMLElement
 	private barContainer: HTMLElement = null as unknown as HTMLElement
-	// private itemContainer: HTMLElement = null as unknown as HTMLElement
 	private isSorting: boolean = false
 	private colorState: boolean = false
 	private maxNumber: number = 0
+	private arrLength: number = 0
+
+	private bars: IBarComponent | [] = []
+	private buttons = [
+		{ label: '▶', action: 'play' },
+		{ label: '⏸', action: 'pause' },
+		{ label: '↺', action: 'reset' },
+		{ label: '↺ ▶', action: 'replay' },
+	]
+
+	private buttonContainer: HTMLElement = null as unknown as HTMLElement
 
 	private playButton: HTMLElement | null = null
 	private pauseButton: HTMLElement | null = null
@@ -27,10 +40,12 @@ class BubbleSortVisualizer {
 		this.currentArray = [...this.initialArray]
 		this.sortProps = props.sortProps
 		this.maxNumber = props.maxNumber
+		this.arrLength = this.currentArray.length
 		this.container = document.querySelector(
 			props.containerSelector
 		) as HTMLElement
-
+		this.buttonContainer = document.createElement('div')
+		this.buttonContainer.className = 'button-container'
 		this.init()
 	}
 
@@ -39,7 +54,7 @@ class BubbleSortVisualizer {
 		this.container.style.minHeight = `${this.maxNumber * 5 + 100}px`
 		this.renderBars()
 		this.createButtons()
-		this.render()
+		this.attachListeners()
 	}
 
 	private renderBars(): void {
@@ -47,73 +62,59 @@ class BubbleSortVisualizer {
 		barContainer.className = 'bar-container'
 		barContainer.style.minHeight = `${this.maxNumber * 5 + 50}px`
 
-		for (let i = 0; i < this.currentArray.length; i++) {
-			const bar = document.createElement('div')
-			bar.className = 'bar'
-			bar.style.height = `${this.currentArray[i] * 5}px`
-			bar.innerHTML = `<span class="text">${this.currentArray[i]}</span>`
-			barContainer.appendChild(bar)
-		}
+		this.currentArray.forEach((value, i) => {
+			const bar: any = new BarComponent({ value })
+			this.bars[i] = bar.element // Update the this.bars array with new instances
+			barContainer.appendChild(this.bars[i])
+		})
 
 		if (this.barContainer) {
 			this.container.replaceChild(barContainer, this.barContainer)
 		} else {
 			this.container.appendChild(barContainer)
 		}
-
 		this.barContainer = barContainer
 	}
 
 	private createButtons(): void {
-		const buttonContainer = document.createElement('div')
-		buttonContainer.className = 'button-container'
+		this.buttons.forEach((button) => {
+			const buttonElement = new ButtonComponent({
+				label: button.label,
+				action: button.action,
+				clickHandler: () => {
+					// remove active class from all buttons
+					this.buttons.forEach((b) => {
+						const el = document.querySelector(`[data-action="${b.action}"]`)
+						if (el) {
+							el.classList.remove('button--active')
+						}
+					})
 
-		const buttons = [
-			{ label: '⏴', action: 'play' },
-			{ label: '⏸', action: 'pause' },
-			{ label: '↺', action: 'reset' },
-			{ label: '↺⏴', action: 'replay' },
-		]
+					// add active class to clicked button
+					buttonElement.getElement().classList.add('button--active')
 
-		buttons.forEach((button) => {
-			const buttonElement = document.createElement('button')
-			buttonElement.className = 'button'
-			buttonElement.textContent = button.label
-			buttonElement.dataset.action = button.action
-
-			buttonElement.addEventListener('click', () => {
-				// remove active class from all buttons
-				buttons.forEach((b) => {
-					const el = document.querySelector(`[data-action="${b.action}"]`)
-					if (el) {
-						el.classList.remove('button--active')
+					// call the corresponding handler
+					switch (button.action) {
+						case 'play':
+							this.handlePlay()
+							break
+						case 'pause':
+							this.handlePause()
+							break
+						case 'reset':
+							this.handleReset()
+							break
+						case 'replay':
+							this.handleReplay()
+							break
 					}
-				})
-
-				// add active class to clicked button
-				buttonElement.classList.add('button--active')
-
-				// call the corresponding handler
-				switch (button.action) {
-					case 'play':
-						this.handlePlay()
-						break
-					case 'pause':
-						this.handlePause()
-						break
-					case 'reset':
-						this.handleReset()
-						break
-					case 'replay':
-						this.handleReplay()
-						break
-				}
+				},
 			})
 
-			buttonContainer.appendChild(buttonElement)
+			this.buttonContainer.appendChild(buttonElement.getElement())
 		})
 
-		this.container.appendChild(buttonContainer)
+		this.container.appendChild(this.buttonContainer)
 	}
 
 	private handlePlay = (time: number | any = 3000): void => {
@@ -127,16 +128,14 @@ class BubbleSortVisualizer {
 	private handlePause = (): void => {
 		console.log('pause')
 		this.isSorting = false
-		console.log(
-			'🚀 ~ file: BubbleSortVisualizer.ts:110 ~ BubbleSortVisualizer ~ this.isSorting:',
-			this.isSorting
-		)
 	}
 
 	private handleReset = (): void => {
 		this.isSorting = false
 		this.currentArray = [...this.initialArray]
 		this.renderBars()
+		// reattach listeners
+		this.attachListeners()
 	}
 
 	private handleReplay = async (time: number | any = 1000): Promise<void> => {
@@ -145,9 +144,9 @@ class BubbleSortVisualizer {
 		this.handlePlay()
 	}
 
-	private async sort(): Promise<void> {
+	private async sort(duration = 1000): Promise<void> {
 		while (!this.isSorted() && this.isSorting) {
-			await new Promise((resolve) => setTimeout(resolve, 1000))
+			await new Promise((resolve) => setTimeout(resolve, duration))
 			// Update the DOM to reflect the current state of the array after each step of the sorting
 			await this.updateDOM()
 		}
@@ -169,15 +168,15 @@ class BubbleSortVisualizer {
 		bar1.style.background = this.colorState ? `royalblue` : `blueviolet`
 		bar1.innerHTML = `<span class="text">${this.currentArray[i]}</span>`
 		bar2.style.height = `${this.currentArray[j] * 5}px`
-		bar2.style.background = this.colorState ? `royalblue` : `blueviolet`
+		bar2.style.background = this.colorState ? `blueviolet` : `royalblue`
 		bar2.innerHTML = `<span class="text">${this.currentArray[j]}</span>`
 
 		this.colorState = !this.colorState // toggle color state
 	}
 
 	private async animateBubbleSort(time: number | any = 500): Promise<void> {
-		for (let i = 0; i < this.currentArray.length; i++) {
-			for (let j = 0; j < this.currentArray.length - i - 1; j++) {
+		for (let i = 0; i < this.arrLength; i++) {
+			for (let j = 0; j < this.arrLength - i - 1; j++) {
 				// pause if isSorting is false
 				if (!this.isSorting) return
 				const leftNum = j
@@ -197,7 +196,7 @@ class BubbleSortVisualizer {
 	}
 
 	private isSorted(): boolean {
-		for (let i = 1; i < this.currentArray.length; i++) {
+		for (let i = 1; i < this.arrLength; i++) {
 			if (this.currentArray[i] < this.currentArray[i - 1]) {
 				return false
 			}
@@ -219,7 +218,8 @@ class BubbleSortVisualizer {
 		this.replayButton?.addEventListener('click', this.handleReplay)
 	}
 
-	render(): void {
+	private attachListeners(): void {
+		console.log('attachListeners')
 		this.removeListeners()
 		// stuff going here
 		this.addListeners()
