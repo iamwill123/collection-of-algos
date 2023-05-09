@@ -22,6 +22,7 @@ class SortVisualizer {
 
 	private container: HTMLElement = null as unknown as HTMLElement
 	private barContainer: HTMLElement = null as unknown as HTMLElement
+	private buttonContainer: HTMLElement = null as unknown as HTMLElement
 	private execTimeElem: HTMLElement = null as unknown as HTMLElement
 
 	private isSorting: boolean = false
@@ -29,6 +30,7 @@ class SortVisualizer {
 	private maxNumber: number = 0
 	private arrLength: number = 0
 	private execTime: number = 0
+	private timeInput: number = 300
 
 	private sortFn: (input: SortInput) => Promise<SortOutput>
 
@@ -40,12 +42,12 @@ class SortVisualizer {
 		{ label: '↺ ▶', action: 'replay' },
 	]
 
-	private buttonContainer: HTMLElement = null as unknown as HTMLElement
-
 	private playButton: HTMLElement | null = null
 	private pauseButton: HTMLElement | null = null
 	private resetButton: HTMLElement | null = null
 	private replayButton: HTMLElement | null = null
+	private timeInputSlider: HTMLElement | null = null
+	private timeLabel: HTMLElement | null = null
 
 	constructor(props: SortVisualizerProps) {
 		this.initialArray = props.sortProps.arr
@@ -67,6 +69,7 @@ class SortVisualizer {
 		this.container.style.minHeight = `${this.maxNumber * 5 + 100}px`
 		this.renderBars()
 		this.createButtons()
+		this.createTimeInput()
 		this.attachListeners()
 	}
 
@@ -89,6 +92,24 @@ class SortVisualizer {
 		this.barContainer = barContainer
 	}
 
+	private createTimeInput = (): void => {
+		const timeLabel = document.createElement('label')
+		timeLabel.htmlFor = 'animation-speed'
+		timeLabel.innerHTML = `Tweak animation speed, ${this.timeInput}ms`
+		this.timeLabel = timeLabel
+
+		const timeInput = document.createElement('input')
+		timeInput.type = 'range'
+		timeInput.min = '0'
+		timeInput.step = '100'
+		timeInput.max = '1000'
+		timeInput.value = String(this.timeInput)
+		timeInput.id = 'animation-speed'
+		this.timeInputSlider = timeInput
+		this.container.appendChild(timeLabel)
+		this.container.appendChild(timeInput)
+	}
+
 	private createButtons = (): void => {
 		this.buttons.forEach((button) => {
 			const buttonElement = new ButtonComponent({
@@ -109,7 +130,7 @@ class SortVisualizer {
 					// call the corresponding handler
 					switch (button.action) {
 						case 'play':
-							this.handlePlay()
+							this.handlePlay(this.timeInput)
 							break
 						case 'pause':
 							this.handlePause()
@@ -131,26 +152,36 @@ class SortVisualizer {
 		execTimeElem.innerHTML = `Execution time: ${this.execTime}ms`
 		this.execTimeElem = execTimeElem
 
-		this.buttonContainer.appendChild(execTimeElem)
+		this.container.appendChild(execTimeElem)
 		this.container.appendChild(this.buttonContainer)
 	}
 
-	private handlePlay = (time: number | any = 3000): void => {
+	private handleTimeInput = async (
+		e: { target: { value: string } } | any
+	): Promise<void> => {
+		await sleep(0)
+		this.timeInput = parseInt(e.target.value)
+		if (this.timeLabel) {
+			this.timeLabel.innerHTML = `Tweak animation speed, ${this.timeInput}ms`
+		}
+	}
+
+	private handlePlay = (duration: number | any = 300): void => {
 		if (!this.isSorting) {
 			this.isSorting = true
 			// let user set the time
-			this.sort()
+			this.sort(duration)
 		}
 	}
 
 	private handlePause = async (): Promise<void> => {
-		await sleep(100)
+		await sleep(500)
 		this.isSorting = false
 	}
 
 	private handleReset = async (): Promise<void> => {
 		this.isSorting = false
-		await sleep(500)
+		await sleep(this.timeInput + 100)
 		this.currentArray = [...this.initialArray]
 		this.renderBars()
 		// reattach listeners
@@ -160,14 +191,14 @@ class SortVisualizer {
 	private handleReplay = async (time: number | any = 1000): Promise<void> => {
 		this.handleReset()
 		await sleep(time)
-		this.handlePlay()
+		this.handlePlay(this.timeInput)
 	}
 
-	private sort = async (duration = 1000): Promise<void> => {
+	private sort = async (duration: number = 0): Promise<void> => {
 		while (!this.isSorted() && this.isSorting) {
 			await new Promise((resolve) => setTimeout(resolve, duration))
 			// Update the DOM to reflect the current state of the array after each step of the sorting
-			await this.updateDOM()
+			await this.updateDOM(duration)
 		}
 		this.isSorting = false
 	}
@@ -175,7 +206,8 @@ class SortVisualizer {
 	private animateSwap = async (
 		i: number,
 		j: number,
-		time: number | any = 400
+		duration: number | any = 0,
+		transitionDuration: number | any = 300
 	): Promise<void> => {
 		if (!this.barContainer) {
 			console.error('barContainer is not initialized')
@@ -192,8 +224,8 @@ class SortVisualizer {
 		const xDifference = (j - i) * barWidth
 
 		// Add transition properties for smooth animations
-		bar1.style.transition = `transform ${time}ms ease, opacity ${time}ms ease, background ${time}ms ease`
-		bar2.style.transition = `transform ${time}ms ease, opacity ${time}ms ease, background ${time}ms ease`
+		bar1.style.transition = `transform ${transitionDuration}ms ease, opacity ${transitionDuration}ms ease, background ${transitionDuration}ms ease`
+		bar2.style.transition = `transform ${transitionDuration}ms ease, opacity ${transitionDuration}ms ease, background ${transitionDuration}ms ease`
 
 		// Change opacity and background color during swap
 		bar1.style.opacity = '0.8'
@@ -205,7 +237,7 @@ class SortVisualizer {
 		bar1.style.transform = `translateX(${xDifference}px)`
 		bar2.style.transform = `translateX(${-xDifference}px)`
 
-		await sleep(time)
+		await sleep(duration)
 
 		// Reset the transform property after the animation
 		bar1.style.transform = 'translateX(0)'
@@ -226,11 +258,11 @@ class SortVisualizer {
 		this.barContainer.insertBefore(bar1, bars[j])
 	}
 
-	private updateDOM = async (): Promise<void> => {
+	private updateDOM = async (duration: number = 0): Promise<void> => {
 		const input = {
 			arr: this.currentArray,
 			callback: async (i: number, j: number) => {
-				await this.animateSwap(i, j)
+				await this.animateSwap(i, j, duration)
 			},
 			isSorting: () => this.isSorting,
 		}
@@ -250,6 +282,7 @@ class SortVisualizer {
 	}
 
 	private addListeners = (): void => {
+		this.timeInputSlider?.addEventListener('change', this.handleTimeInput)
 		this.playButton?.addEventListener('click', this.handlePlay)
 		this.pauseButton?.addEventListener('click', this.handlePause)
 		this.resetButton?.addEventListener('click', this.handleReset)
