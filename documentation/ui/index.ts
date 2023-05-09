@@ -1,5 +1,6 @@
 import { findMaxNumber, generateRandomNumbers } from '../../src/lib/helpers'
-import BubbleSortVisualizer from './components/BubbleSortVisualizer'
+import bubble from '../../src/lib/sorts/bubble'
+import SortVisualizer from './components/SortVisualizer'
 
 let sortProps = {
 	arr: generateRandomNumbers({ n: 10, min: 1, max: 100 }),
@@ -7,7 +8,8 @@ let sortProps = {
 
 let props = {
 	sortProps,
+	sortFn: bubble,
 	maxNumber: findMaxNumber(sortProps.arr),
 	containerSelector: '[data-component="BubbleSort"]',
 }
-const bubbleSortAnim = new BubbleSortVisualizer(props)
+const bubbleSortAnim = new SortVisualizer(props)

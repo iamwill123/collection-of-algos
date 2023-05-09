@@ -10,17 +10,24 @@ type SortByKey = string
 type ArrayInput = number[] | string[] | ArrayOfObjects | any[]
 type ArrayOutput = number[] | string[] | ArrayOfObjects | any[]
 type NumberOrObject = number | string | Object | any
+
 type SortOutput = {
 	arr: ArrayInput // the sorted array
 	key?: SortByKey // the key to sort by
 	order?: SortOrder // the order to sort by
 	n?: number // the number of elements in the array
 	execTime?: number // the execution time in milliseconds
+	animate?: boolean // if the sort is animated
 }
 type SortInput = {
 	arr: ArrayInput
 	order?: SortOrder
 	key?: SortByKey
+	callback?: (
+		a: NumberOrObject,
+		b: NumberOrObject
+	) => Promise<void> | Promise<any>
+	isSorting?: () => boolean
 }
 
 type GenerateRandomNumbers =

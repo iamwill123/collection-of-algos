@@ -1,4 +1,8 @@
-import { ArrayInput, SortInput } from '../types'
+import {
+	ArrayInput,
+	SortInput,
+	SortOutput,
+} from '../../../src/types/sorts/index'
 import BarComponent from './Bar/Component'
 import { IBarComponent } from './Bar/types'
 import ButtonComponent from './Button/Component'
@@ -7,18 +11,25 @@ interface SortVisualizerProps {
 	sortProps: SortInput
 	maxNumber: number
 	containerSelector: string
+	sortFn: (input: SortInput) => Promise<SortOutput>
 }
 
-class BubbleSortVisualizer {
+class SortVisualizer {
 	private initialArray: ArrayInput = []
 	private currentArray: ArrayInput = []
 	private sortProps: SortInput = { arr: [] }
+
 	private container: HTMLElement = null as unknown as HTMLElement
 	private barContainer: HTMLElement = null as unknown as HTMLElement
+	private execTimeElem: HTMLElement = null as unknown as HTMLElement
+
 	private isSorting: boolean = false
 	private colorState: boolean = false
 	private maxNumber: number = 0
 	private arrLength: number = 0
+	private execTime: number = 0
+
+	private sortFn: (input: SortInput) => Promise<SortOutput>
 
 	private bars: IBarComponent | [] = []
 	private buttons = [
@@ -46,10 +57,11 @@ class BubbleSortVisualizer {
 		) as HTMLElement
 		this.buttonContainer = document.createElement('div')
 		this.buttonContainer.className = 'button-container'
+		this.sortFn = props.sortFn
 		this.init()
 	}
 
-	private init(): void {
+	private init = (): void => {
 		// set min height of container to be a bit higher than the max number
 		this.container.style.minHeight = `${this.maxNumber * 5 + 100}px`
 		this.renderBars()
@@ -57,7 +69,7 @@ class BubbleSortVisualizer {
 		this.attachListeners()
 	}
 
-	private renderBars(): void {
+	private renderBars = (): void => {
 		const barContainer = document.createElement('div')
 		barContainer.className = 'bar-container'
 		barContainer.style.minHeight = `${this.maxNumber * 5 + 50}px`
@@ -76,7 +88,7 @@ class BubbleSortVisualizer {
 		this.barContainer = barContainer
 	}
 
-	private createButtons(): void {
+	private createButtons = (): void => {
 		this.buttons.forEach((button) => {
 			const buttonElement = new ButtonComponent({
 				label: button.label,
@@ -113,7 +125,12 @@ class BubbleSortVisualizer {
 
 			this.buttonContainer.appendChild(buttonElement.getElement())
 		})
+		const execTimeElem = document.createElement('div')
+		execTimeElem.className = 'exec-time'
+		execTimeElem.innerHTML = `Execution time: ${this.execTime}ms`
+		this.execTimeElem = execTimeElem
 
+		this.buttonContainer.appendChild(execTimeElem)
 		this.container.appendChild(this.buttonContainer)
 	}
 
@@ -144,7 +161,7 @@ class BubbleSortVisualizer {
 		this.handlePlay()
 	}
 
-	private async sort(duration = 1000): Promise<void> {
+	private sort = async (duration = 1000): Promise<void> => {
 		while (!this.isSorted() && this.isSorting) {
 			await new Promise((resolve) => setTimeout(resolve, duration))
 			// Update the DOM to reflect the current state of the array after each step of the sorting
@@ -153,49 +170,64 @@ class BubbleSortVisualizer {
 		this.isSorting = false
 	}
 
-	private animateSwap(i: number, j: number): void {
+	private animateSwap = async (
+		i: number,
+		j: number,
+		time: number | any = 500
+	): Promise<void> => {
+		if (!this.barContainer) {
+			console.error('barContainer is not initialized')
+			return
+		}
+
 		const bars = this.barContainer.children
 		const bar1 = bars[i] as HTMLDivElement
 		const bar2 = bars[j] as HTMLDivElement
-		// reset colors
 
-		// swap
-		const temp = this.currentArray[i]
-		this.currentArray[i] = this.currentArray[j]
-		this.currentArray[j] = temp
+		const barWidth = bar1.offsetWidth
+		const xDifference = (j - i) * barWidth
 
+		// Add transition properties for smooth animations
+		bar1.style.transition = `transform ${time}ms ease, height ${time}ms ease, background ${time}ms ease`
+		bar1.innerHTML = `<span class="text">${this.currentArray[i]}</span>`
+		bar1.style.transform = `translateX(${xDifference}px)` // Add transform translateX
 		bar1.style.height = `${this.currentArray[i] * 5}px`
 		bar1.style.background = this.colorState ? `royalblue` : `blueviolet`
-		bar1.innerHTML = `<span class="text">${this.currentArray[i]}</span>`
+
+		bar2.style.transition = `transform ${time}ms ease, height ${time}ms ease, background ${time}ms ease`
+		bar2.innerHTML = `<span class="text">${this.currentArray[j]}</span>`
+		bar2.style.transform = `translateX(${-xDifference}px)` // Add transform translateX
 		bar2.style.height = `${this.currentArray[j] * 5}px`
 		bar2.style.background = this.colorState ? `blueviolet` : `royalblue`
-		bar2.innerHTML = `<span class="text">${this.currentArray[j]}</span>`
 
-		this.colorState = !this.colorState // toggle color state
+		await new Promise((resolve) => setTimeout(resolve, time))
+
+		// Reset the transform property after the animation
+		bar1.style.transform = 'translateX(0)'
+		bar2.style.transform = 'translateX(0)'
+
+		// Remove the transition properties after the animation
+		bar1.style.transition = ''
+		bar2.style.transition = ''
+
+		this.colorState = !this.colorState // Toggle color state
 	}
 
-	private async animateBubbleSort(time: number | any = 500): Promise<void> {
-		for (let i = 0; i < this.arrLength; i++) {
-			for (let j = 0; j < this.arrLength - i - 1; j++) {
-				// pause if isSorting is false
-				if (!this.isSorting) return
-				const leftNum = j
-				const rightNum = j + 1
-				let _leftNum = this.currentArray[leftNum]
-				let _rightNum = this.currentArray[rightNum]
-				if (_leftNum > _rightNum) {
-					this.animateSwap(leftNum, rightNum)
-					await new Promise((resolve) => setTimeout(resolve, time))
-				}
-			}
+	private updateDOM = async (): Promise<void> => {
+		const input = {
+			arr: this.currentArray,
+			callback: async (i: number, j: number) => {
+				await this.animateSwap(i, j)
+			},
+			isSorting: () => this.isSorting,
 		}
+		const { arr, execTime = 0 } = await this.sortFn(input)
+		this.execTimeElem.innerHTML = `Animation time: ${execTime / 1000}s`
+		// in seconds
+		this.currentArray = arr
 	}
 
-	private async updateDOM(): Promise<void> {
-		await this.animateBubbleSort()
-	}
-
-	private isSorted(): boolean {
+	private isSorted = (): boolean => {
 		for (let i = 1; i < this.arrLength; i++) {
 			if (this.currentArray[i] < this.currentArray[i - 1]) {
 				return false
@@ -204,21 +236,21 @@ class BubbleSortVisualizer {
 		return true
 	}
 
-	private addListeners(): void {
+	private addListeners = (): void => {
 		this.playButton?.addEventListener('click', this.handlePlay)
 		this.pauseButton?.addEventListener('click', this.handlePause)
 		this.resetButton?.addEventListener('click', this.handleReset)
 		this.replayButton?.addEventListener('click', this.handleReplay)
 	}
 
-	private removeListeners(): void {
+	private removeListeners = (): void => {
 		this.playButton?.addEventListener('click', this.handlePlay)
 		this.pauseButton?.addEventListener('click', this.handlePause)
 		this.resetButton?.addEventListener('click', this.handleReset)
 		this.replayButton?.addEventListener('click', this.handleReplay)
 	}
 
-	private attachListeners(): void {
+	private attachListeners = (): void => {
 		console.log('attachListeners')
 		this.removeListeners()
 		// stuff going here
@@ -226,4 +258,4 @@ class BubbleSortVisualizer {
 	}
 }
 
-export default BubbleSortVisualizer
+export default SortVisualizer
