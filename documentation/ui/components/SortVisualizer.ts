@@ -1,3 +1,4 @@
+import { sleep } from '../../../src/lib/helpers'
 import {
 	ArrayInput,
 	SortInput,
@@ -142,13 +143,14 @@ class SortVisualizer {
 		}
 	}
 
-	private handlePause = (): void => {
-		console.log('pause')
+	private handlePause = async (): Promise<void> => {
+		await sleep(100)
 		this.isSorting = false
 	}
 
-	private handleReset = (): void => {
+	private handleReset = async (): Promise<void> => {
 		this.isSorting = false
+		await sleep(500)
 		this.currentArray = [...this.initialArray]
 		this.renderBars()
 		// reattach listeners
@@ -157,7 +159,7 @@ class SortVisualizer {
 
 	private handleReplay = async (time: number | any = 1000): Promise<void> => {
 		this.handleReset()
-		await new Promise((resolve) => setTimeout(resolve, time))
+		await sleep(time)
 		this.handlePlay()
 	}
 
@@ -173,7 +175,7 @@ class SortVisualizer {
 	private animateSwap = async (
 		i: number,
 		j: number,
-		time: number | any = 500
+		time: number | any = 400
 	): Promise<void> => {
 		if (!this.barContainer) {
 			console.error('barContainer is not initialized')
@@ -184,33 +186,44 @@ class SortVisualizer {
 		const bar1 = bars[i] as HTMLDivElement
 		const bar2 = bars[j] as HTMLDivElement
 
+		const originalColor1 = bar1.style.background
+		const originalColor2 = bar2.style.background
 		const barWidth = bar1.offsetWidth
 		const xDifference = (j - i) * barWidth
 
 		// Add transition properties for smooth animations
-		bar1.style.transition = `transform ${time}ms ease, height ${time}ms ease, background ${time}ms ease`
-		bar1.innerHTML = `<span class="text">${this.currentArray[i]}</span>`
-		bar1.style.transform = `translateX(${xDifference}px)` // Add transform translateX
-		bar1.style.height = `${this.currentArray[i] * 5}px`
-		bar1.style.background = this.colorState ? `royalblue` : `blueviolet`
+		bar1.style.transition = `transform ${time}ms ease, opacity ${time}ms ease, background ${time}ms ease`
+		bar2.style.transition = `transform ${time}ms ease, opacity ${time}ms ease, background ${time}ms ease`
 
-		bar2.style.transition = `transform ${time}ms ease, height ${time}ms ease, background ${time}ms ease`
-		bar2.innerHTML = `<span class="text">${this.currentArray[j]}</span>`
-		bar2.style.transform = `translateX(${-xDifference}px)` // Add transform translateX
-		bar2.style.height = `${this.currentArray[j] * 5}px`
-		bar2.style.background = this.colorState ? `blueviolet` : `royalblue`
+		// Change opacity and background color during swap
+		bar1.style.opacity = '0.8'
+		bar2.style.opacity = '0.8'
+		bar1.style.background = 'red'
+		bar2.style.background = 'royalblue'
 
-		await new Promise((resolve) => setTimeout(resolve, time))
+		// Move bars to their new positions
+		bar1.style.transform = `translateX(${xDifference}px)`
+		bar2.style.transform = `translateX(${-xDifference}px)`
+
+		await sleep(time)
 
 		// Reset the transform property after the animation
 		bar1.style.transform = 'translateX(0)'
 		bar2.style.transform = 'translateX(0)'
 
+		// Restore the original opacity and background colors
+		bar1.style.opacity = '1'
+		bar2.style.opacity = '1'
+		bar1.style.background = originalColor1
+		bar2.style.background = originalColor2
+
 		// Remove the transition properties after the animation
 		bar1.style.transition = ''
 		bar2.style.transition = ''
 
-		this.colorState = !this.colorState // Toggle color state
+		// Update the DOM elements
+		this.barContainer.insertBefore(bar2, bar1)
+		this.barContainer.insertBefore(bar1, bars[j])
 	}
 
 	private updateDOM = async (): Promise<void> => {
