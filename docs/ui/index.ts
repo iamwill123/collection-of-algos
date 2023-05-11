@@ -2,8 +2,9 @@ import { findMaxNumber, generateRandomNumbers } from '../../src/lib/helpers'
 import bubble from '../../src/lib/sorts/bubble'
 import SortVisualizer from './components/SortVisualizer'
 
+// todo allow user input for random numbers
 let sortProps = {
-	arr: generateRandomNumbers({ n: 10, min: 1, max: 100 }),
+	arr: generateRandomNumbers({ n: 15, min: 1, max: 100 }),
 }
 
 let props = {
@@ -12,4 +13,5 @@ let props = {
 	maxNumber: findMaxNumber(sortProps.arr),
 	containerSelector: '[data-component="BubbleSort"]',
 }
-const bubbleSortAnim = new SortVisualizer(props)
+
+new SortVisualizer(props)

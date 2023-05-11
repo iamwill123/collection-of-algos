@@ -30,11 +30,12 @@ class SortVisualizer {
 	private maxNumber: number = 0
 	private arrLength: number = 0
 	private execTime: number = 0
-	private timeInput: number = 300
+	private animationSpeed: number = 300
+	private isLoading: boolean = false
 
 	private sortFn: (input: SortInput) => Promise<SortOutput>
 
-	private bars: IBarComponent | [] = []
+	private bars: IBarComponent | [] | any = []
 	private buttons = [
 		{ label: '▶', action: 'play' },
 		{ label: '⏸', action: 'pause' },
@@ -46,8 +47,10 @@ class SortVisualizer {
 	private pauseButton: HTMLElement | null = null
 	private resetButton: HTMLElement | null = null
 	private replayButton: HTMLElement | null = null
-	private timeInputSlider: HTMLElement | null = null
-	private timeLabel: HTMLElement | null = null
+	private animationSpeedSlider: HTMLElement | null = null
+	private animationSpeedContainer: HTMLElement | null = null
+	private animationSpeedLabel: HTMLElement | null = null
+	private loaderMessage: HTMLElement | null = null
 
 	constructor(props: SortVisualizerProps) {
 		this.initialArray = props.sortProps.arr
@@ -69,7 +72,7 @@ class SortVisualizer {
 		this.container.style.minHeight = `${this.maxNumber * 5 + 100}px`
 		this.renderBars()
 		this.createButtons()
-		this.createTimeInput()
+		this.createAnimationSpeed()
 		this.attachListeners()
 	}
 
@@ -92,22 +95,34 @@ class SortVisualizer {
 		this.barContainer = barContainer
 	}
 
-	private createTimeInput = (): void => {
-		const timeLabel = document.createElement('label')
-		timeLabel.htmlFor = 'animation-speed'
-		timeLabel.innerHTML = `Tweak animation speed, ${this.timeInput}ms`
-		this.timeLabel = timeLabel
+	private createAnimationSpeed = (): void => {
+		const loaderMessage = document.createElement('div')
+		loaderMessage.className = 'loader-message'
+		loaderMessage.innerHTML = '...'
+		this.loaderMessage = loaderMessage
 
-		const timeInput = document.createElement('input')
-		timeInput.type = 'range'
-		timeInput.min = '0'
-		timeInput.step = '100'
-		timeInput.max = '1000'
-		timeInput.value = String(this.timeInput)
-		timeInput.id = 'animation-speed'
-		this.timeInputSlider = timeInput
-		this.container.appendChild(timeLabel)
-		this.container.appendChild(timeInput)
+		const animationSpeedContainer = document.createElement('div')
+		animationSpeedContainer.className = 'animation-speed-container'
+		const animationSpeedLabel = document.createElement('label')
+		animationSpeedLabel.htmlFor = 'animation-speed'
+		animationSpeedLabel.innerHTML = `Tweak animation speed, ${this.animationSpeed}ms`
+		this.animationSpeedLabel = animationSpeedLabel
+		this.animationSpeedContainer = animationSpeedContainer
+
+		const animationSpeed = document.createElement('input')
+		animationSpeed.type = 'range'
+		animationSpeed.min = '0'
+		animationSpeed.step = '100'
+		animationSpeed.max = '1000'
+		animationSpeed.value = String(this.animationSpeed)
+		animationSpeed.className = 'animation-speed-slider'
+
+		this.animationSpeedSlider = animationSpeed
+
+		animationSpeedContainer.appendChild(animationSpeedLabel)
+		animationSpeedContainer.appendChild(animationSpeed)
+		animationSpeedContainer.appendChild(loaderMessage)
+		this.container.appendChild(animationSpeedContainer)
 	}
 
 	private createButtons = (): void => {
@@ -130,7 +145,7 @@ class SortVisualizer {
 					// call the corresponding handler
 					switch (button.action) {
 						case 'play':
-							this.handlePlay(this.timeInput)
+							this.handlePlay(this.animationSpeed)
 							break
 						case 'pause':
 							this.handlePause()
@@ -156,18 +171,19 @@ class SortVisualizer {
 		this.container.appendChild(this.buttonContainer)
 	}
 
-	private handleTimeInput = async (
+	private handleanimationSpeed = async (
 		e: { target: { value: string } } | any
 	): Promise<void> => {
 		await sleep(0)
-		this.timeInput = parseInt(e.target.value)
-		if (this.timeLabel) {
-			this.timeLabel.innerHTML = `Tweak animation speed, ${this.timeInput}ms`
+		this.animationSpeed = parseInt(e.target.value)
+		if (this.animationSpeedLabel) {
+			this.animationSpeedLabel.innerHTML = `Tweak animation speed, ${this.animationSpeed}ms`
 		}
 	}
 
 	private handlePlay = (duration: number | any = 300): void => {
-		if (!this.isSorting) {
+		if (!this.isSorting && !this.isSorted()) {
+			this.updateLoaderMessage('playing...')
 			this.isSorting = true
 			// let user set the time
 			this.sort(duration)
@@ -175,23 +191,36 @@ class SortVisualizer {
 	}
 
 	private handlePause = async (): Promise<void> => {
-		await sleep(500)
-		this.isSorting = false
+		if (!this.isSorted()) {
+			this.updateLoaderMessage('pausing...')
+			await sleep(500)
+			this.isSorting = false
+			this.updateLoaderMessage('paused')
+		}
 	}
 
 	private handleReset = async (): Promise<void> => {
-		this.isSorting = false
-		await sleep(this.timeInput + 100)
+		this.isLoading = true
+		this.updateLoaderMessage('resetting...')
+		await sleep(this.animationSpeed + 500)
 		this.currentArray = [...this.initialArray]
 		this.renderBars()
 		// reattach listeners
 		this.attachListeners()
+		this.isLoading = false
+		this.updateLoaderMessage('done!')
 	}
 
 	private handleReplay = async (time: number | any = 1000): Promise<void> => {
 		this.handleReset()
 		await sleep(time)
-		this.handlePlay(this.timeInput)
+		this.handlePlay(this.animationSpeed)
+	}
+
+	private updateLoaderMessage = (message: string): void => {
+		if (this.loaderMessage) {
+			this.loaderMessage.innerHTML = message
+		}
 	}
 
 	private sort = async (duration: number = 0): Promise<void> => {
@@ -237,6 +266,7 @@ class SortVisualizer {
 		bar1.style.transform = `translateX(${xDifference}px)`
 		bar2.style.transform = `translateX(${-xDifference}px)`
 
+		if (this.isLoading) return
 		await sleep(duration)
 
 		// Reset the transform property after the animation
@@ -268,8 +298,15 @@ class SortVisualizer {
 		}
 		const { arr, execTime = 0 } = await this.sortFn(input)
 		this.execTimeElem.innerHTML = `Animation time: ${execTime / 1000}s`
+		if (this.isSorted()) {
+			this.updateLoaderMessage('done!')
+			setTimeout(() => {
+				this.updateLoaderMessage('...')
+			}, 1000)
+		}
 		// in seconds
 		this.currentArray = arr
+		this.isLoading = false
 	}
 
 	private isSorted = (): boolean => {
@@ -282,7 +319,10 @@ class SortVisualizer {
 	}
 
 	private addListeners = (): void => {
-		this.timeInputSlider?.addEventListener('change', this.handleTimeInput)
+		this.animationSpeedSlider?.addEventListener(
+			'change',
+			this.handleanimationSpeed
+		)
 		this.playButton?.addEventListener('click', this.handlePlay)
 		this.pauseButton?.addEventListener('click', this.handlePause)
 		this.resetButton?.addEventListener('click', this.handleReset)
@@ -290,6 +330,10 @@ class SortVisualizer {
 	}
 
 	private removeListeners = (): void => {
+		this.animationSpeedSlider?.addEventListener(
+			'change',
+			this.handleanimationSpeed
+		)
 		this.playButton?.addEventListener('click', this.handlePlay)
 		this.pauseButton?.addEventListener('click', this.handlePause)
 		this.resetButton?.addEventListener('click', this.handleReset)
@@ -297,9 +341,8 @@ class SortVisualizer {
 	}
 
 	private attachListeners = (): void => {
-		console.log('attachListeners')
 		this.removeListeners()
-		// stuff going here
+		// stuff can going here
 		this.addListeners()
 	}
 }
