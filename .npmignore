@@ -19,3 +19,9 @@ Dockerfile
 docker-compose.yml
 docker-compose.override.yml
 DEPLOYMENT.md
+.github/
+docs-dist/
+jest.config.js
+tsconfig.test.json
+tsconfig.json
+LICENSE
