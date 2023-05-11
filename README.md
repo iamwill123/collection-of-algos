@@ -20,11 +20,23 @@ yarn add collection-of-algos
 
 Import the functions you want in your TypeScript or JavaScript project, see the test cases for usage examples.
 
+**Note:** Moving forward, the design on the functions will all be async (WIP), so you can use them with async/await or promise chains. Currently only bubbleSort is async.
+
 ``` javascript
 import { bubbleSort, nativeSort } from 'collection-of-algos'
 
-const obj1 = { arr: [5, 3, 1, 4, 2] }
-const { arr: arrOfNums } =  bubbleSort(obj1)
+let exampleArr = [5, 3, 1, 4, 2]
+// create shallow copy of the array
+const unsortedArr = [...exampleArr]
+const obj1 = { arr: unsortedArr }
+
+// using a promise chain
+bubbleSort(obj1).then(({ arr }) => {
+  console.log(arr) // [1, 2, 3, 4, 5]
+});
+
+// or using async/await
+const { arr: arrOfNums } =  await bubbleSort(obj1)
 
 console.log(arrOfNums) // [1, 2, 3, 4, 5]
 
