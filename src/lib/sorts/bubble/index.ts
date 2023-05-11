@@ -1,3 +1,4 @@
+import { SortInput, SortOutput } from '../../../types/sorts'
 /*
 bubble sort is a simple sorting algorithm that repeatedly steps through the list to be sorted, compares each pair of adjacent items and swaps them if they are in the wrong order. The pass through the list is repeated until no swaps are needed, which indicates that the list is sorted.
 
@@ -11,18 +12,24 @@ The space complexity of bubble sort is O(1).
 */
 
 import {
+	endTime,
 	howLongExecTook,
+	isAnObj,
 	isAsc,
 	startTime,
-	endTime,
-	isAnObj,
 } from '../../helpers'
-import { SortInput, SortOutput } from '../../../types/sorts'
 
-function bubble(input: SortInput): SortOutput {
+async function bubble(input: SortInput): Promise<SortOutput> {
 	const _s = startTime()
-	const { arr, order = 'asc', key = '' } = input
+	const {
+		arr,
+		order = 'asc',
+		key = '',
+		callback = () => {},
+		isSorting = () => true,
+	} = input
 	const n: number = arr.length
+	let animate: boolean = false
 
 	if (n <= 1) {
 		return { arr, key, order, n, execTime: 0 }
@@ -31,9 +38,13 @@ function bubble(input: SortInput): SortOutput {
 	if (isAnObj(0, arr) && !key) throw new Error('key is required')
 	for (let i = 0; i < n; i++) {
 		for (let j = 0; j < n - i - 1; j++) {
+			if (!isSorting()) {
+				// Check if sorting is paused
+				return { arr, key, order, n, execTime: 0, animate: false }
+			}
+
 			const leftNum = isAsc(order) ? j : j + 1
 			const rightNum = isAsc(order) ? j + 1 : j
-
 			let _leftNum = isAnObj(leftNum, arr) ? arr[leftNum][key] : arr[leftNum]
 			let _rightNum = isAnObj(rightNum, arr)
 				? arr[rightNum][key]
@@ -41,12 +52,18 @@ function bubble(input: SortInput): SortOutput {
 
 			if (_leftNum > _rightNum) {
 				;[arr[j], arr[j + 1]] = [arr[j + 1], arr[j]] // swap
+
+				// if callback contains a function with arguments then execute it
+				if (callback.length && isSorting()) {
+					animate = true
+					await callback(leftNum, rightNum) // animate swap
+				}
 			}
 		}
 	}
 	const _e = endTime()
 	const execTimeInMs = howLongExecTook(_s, _e)
-	return { arr, key, order, n, execTime: execTimeInMs }
+	return { arr, key, order, n, execTime: execTimeInMs, animate }
 }
 
 export default bubble
