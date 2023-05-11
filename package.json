@@ -12,7 +12,7 @@
 	"types": "dist/types.d.ts",
 	"license": "MIT",
 	"scripts": {
-		"dev": "parcel documentation/index.html",
+		"dev": "parcel docs/index.html",
 		"build": "parcel build src/index.ts --dist-dir dist",
 		"build-docs": "parcel docs/index.html --dist-dir docs-dist",
 		"watch": "parcel watch",
