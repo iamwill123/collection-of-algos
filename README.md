@@ -4,6 +4,8 @@ It's also a library that can be used in your projects. It contains algos that ar
 
 [![codecov](https://codecov.io/gh/iamwill123/collection-of-algos/branch/main/graph/badge.svg?token=ABC123)](https://codecov.io/gh/iamwill123/collection-of-algos) [![test](https://github.com/iamwill123/collection-of-algos/actions/workflows/run-unit-tests.yml/badge.svg)](https://github.com/iamwill123/collection-of-algos/actions/workflows/run-unit-tests.yml) [![License: MIT](https://img.shields.io/badge/License-MIT-red.svg)](https://opensource.org/licenses/MIT)
 
+[![Edit example: collection of algos in reactjs](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/example-collection-of-algos-in-reactjs-rnsw71?fontsize=14&hidenavigation=1&theme=dark)
+
 ### To use this package in your project
 
 First install the package
