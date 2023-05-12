@@ -142,13 +142,13 @@
       this[globalName] = mainExports;
     }
   }
-})({"c1wi1":[function(require,module,exports) {
+})({"b4prh":[function(require,module,exports) {
 var global = arguments[3];
 var HMR_HOST = null;
 var HMR_PORT = null;
 var HMR_SECURE = false;
 var HMR_ENV_HASH = "d6ea1d42532a7575";
-module.bundle.HMR_BUNDLE_ID = "92240e092a63c235";
+module.bundle.HMR_BUNDLE_ID = "c017dc3daa3519ca";
 "use strict";
 /* global HMR_HOST, HMR_PORT, HMR_ENV_HASH, HMR_SECURE, chrome, browser, globalThis, __parcel__import__, __parcel__importScripts__, ServiceWorkerGlobalScope */ /*::
 import type {
@@ -556,7 +556,7 @@ function hmrAccept(bundle, id) {
     });
 }
 
-},{}],"aq5rI":[function(require,module,exports) {
+},{}],"eTQZV":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 var _helpers = require("../../src/lib/helpers");
 var _bubble = require("../../src/lib/sorts/bubble");
@@ -579,7 +579,7 @@ let props = {
 };
 new (0, _sortVisualizerDefault.default)(props);
 
-},{"../../src/lib/helpers":"2nhj8","../../src/lib/sorts/bubble":"28QTb","./components/SortVisualizer":"ec9V0","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"ec9V0":[function(require,module,exports) {
+},{"../../src/lib/helpers":"2nhj8","../../src/lib/sorts/bubble":"28QTb","./components/SortVisualizer":"4D9fF","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"4D9fF":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _helpers = require("../../../src/lib/helpers");
@@ -871,7 +871,7 @@ class SortVisualizer {
 }
 exports.default = SortVisualizer;
 
-},{"../../../src/lib/helpers":"2nhj8","./Bar/Component":"f4ZKq","./Button/Component":"3R9LO","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"f4ZKq":[function(require,module,exports) {
+},{"../../../src/lib/helpers":"2nhj8","./Bar/Component":"jxrYi","./Button/Component":"f6aXI","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"jxrYi":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _component = require("../Base/Component");
@@ -891,7 +891,7 @@ class BarComponent extends (0, _componentDefault.default) {
 }
 exports.default = BarComponent;
 
-},{"../Base/Component":"kqh0W","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"kqh0W":[function(require,module,exports) {
+},{"../Base/Component":"bEsR1","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"bEsR1":[function(require,module,exports) {
 //  The base Component class to handle common functionality, such as element creation and applying classes.
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
@@ -906,7 +906,7 @@ class Component {
 }
 exports.default = Component;
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"3R9LO":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"f6aXI":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _component = require("../Base/Component");
@@ -929,6 +929,6 @@ class ButtonComponent extends (0, _componentDefault.default) {
 }
 exports.default = ButtonComponent;
 
-},{"../Base/Component":"kqh0W","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["c1wi1","aq5rI"], "aq5rI", "parcelRequire197b")
+},{"../Base/Component":"bEsR1","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["b4prh","eTQZV"], "eTQZV", "parcelRequire197b")
 
-//# sourceMappingURL=index.2a63c235.js.map
+//# sourceMappingURL=index.aa3519ca.js.map
