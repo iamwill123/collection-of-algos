@@ -100,6 +100,11 @@ yarn coverage
 
 <http://localhost:3000>
 
+### The `documentation` branch
+
+- this branch contains the documentation for the functions in this repo
+- it is also where `dist-doc` is deployed
+
 #### Connect with me
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/williampeiyuan/)
