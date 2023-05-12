@@ -26,4 +26,4 @@ debug.log
 .env
 .parcel-cache
 DEPLOYMENT.md
-docs/
+documentation/
