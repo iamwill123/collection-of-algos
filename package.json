@@ -14,7 +14,7 @@
 	"scripts": {
 		"dev": "parcel docs/index.html",
 		"build": "parcel build src/index.ts --dist-dir dist",
-		"build-docs": "parcel docs/index.html --dist-dir docs-dist",
+		"build-docs": "parcel documentation/index.html --dist-dir docs",
 		"watch": "parcel watch",
 		"test": "jest",
 		"test:coverage": "jest --coverage",

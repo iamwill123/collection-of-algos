@@ -1,0 +1,154 @@
+body {
+  color: #fff;
+  background: #000;
+}
+
+[data-component="BubbleSort"] {
+  text-align: center;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  display: flex;
+}
+
+.item {
+  height: 50px;
+  width: 50px;
+  color: #fff;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: .5rem;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
+  font-size: 24px;
+  transition: all .2s ease-in-out;
+  display: flex;
+}
+
+button {
+  color: #fff;
+  text-align: center;
+  cursor: pointer;
+  background-color: #a04caf;
+  border: none;
+  border-radius: 10px;
+  margin: 4px 2px;
+  padding: 10px 15px;
+  font-size: 20px;
+  text-decoration: none;
+  display: inline-block;
+}
+
+button:hover {
+  background-color: #8e3e82;
+}
+
+.button--active {
+  border: 2px dotted #fff;
+}
+
+@keyframes sorting {
+  0% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(1.2);
+  }
+}
+
+.sorting .item {
+  animation: .3s ease-in-out sorting;
+}
+
+.item-container {
+  width: 250px;
+  height: 50px;
+  flex-direction: row;
+  display: flex;
+  position: relative;
+}
+
+.button-container {
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  display: flex;
+}
+
+.bar-container {
+  align-items: center;
+  display: flex;
+}
+
+.bar {
+  color: #fff;
+  width: 30px;
+  height: 20px;
+  background: #39ff14;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  margin: 2px;
+  font-size: 20px;
+  transition: all .1s;
+  display: flex;
+}
+
+.bar .text {
+  margin: -25px;
+}
+
+.animation-speed-container {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  display: flex;
+}
+
+.animation-speed-container label {
+  margin-bottom: 10px;
+}
+
+.animation-speed-slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 10px;
+  opacity: .7;
+  -webkit-transition: all .2s;
+  background: #d3d3d3;
+  border-radius: 5px;
+  outline: none;
+  transition: opacity .2s;
+}
+
+.animation-speed-slider:hover {
+  opacity: 1;
+}
+
+.animation-speed-slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  background: #a04caf;
+  border-radius: 50%;
+}
+
+.animation-speed-slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  background: #a04caf;
+  border-radius: 50%;
+}
+
+.loader-message {
+  border-bottom: 1px dotted #39ff14;
+  margin-top: 15px;
+  padding: 5px;
+  font-size: 15px;
+}
+
+/*# sourceMappingURL=index.ccf06c86.css.map */

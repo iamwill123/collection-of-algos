@@ -103,7 +103,7 @@ yarn coverage
 ### The `documentation` branch
 
 - this branch contains the documentation for the functions in this repo
-- it is also where `dist-doc` is deployed
+- it is also where `docs` is deployed
 
 #### Connect with me
 
