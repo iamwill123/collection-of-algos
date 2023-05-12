@@ -8,7 +8,7 @@ It's also a library that can be used in your projects. It contains algos that ar
 
 ### To use this package in your project
 
-First install the package
+First install the package (on npm as well [here](https://iamwill123.github.io/collection-of-algos/))
 
 ``` bash
 # using npm
