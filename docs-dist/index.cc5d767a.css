@@ -1,9 +1,4 @@
-body {
-  color: #fff;
-  background: #000;
-}
-
-[data-component="BubbleSort"] {
+[data-component-sorts="BubbleSort"], [data-component-sorts="SelectionSort"] {
   text-align: center;
   flex-direction: column;
   align-items: center;
@@ -11,19 +6,16 @@ body {
   display: flex;
 }
 
-.item {
-  height: 50px;
-  width: 50px;
-  color: #fff;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border-radius: .5rem;
-  justify-content: center;
-  align-items: center;
-  margin-right: 10px;
-  font-size: 24px;
-  transition: all .2s ease-in-out;
-  display: flex;
+@media screen and (max-width: 600px) {
+  [data-component-sorts] {
+    scale: .8;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  [data-component-sorts] {
+    scale: .7;
+  }
 }
 
 button {
@@ -46,28 +38,6 @@ button:hover {
 
 .button--active {
   border: 2px dotted #fff;
-}
-
-@keyframes sorting {
-  0% {
-    transform: scale(1);
-  }
-
-  100% {
-    transform: scale(1.2);
-  }
-}
-
-.sorting .item {
-  animation: .3s ease-in-out sorting;
-}
-
-.item-container {
-  width: 250px;
-  height: 50px;
-  flex-direction: row;
-  display: flex;
-  position: relative;
 }
 
 .button-container {

@@ -563,6 +563,8 @@ var _bubble = require("../../src/lib/sorts/bubble");
 var _bubbleDefault = parcelHelpers.interopDefault(_bubble);
 var _sortVisualizer = require("./components/SortVisualizer");
 var _sortVisualizerDefault = parcelHelpers.interopDefault(_sortVisualizer);
+var _selection = require("../../src/lib/sorts/selection");
+var _selectionDefault = parcelHelpers.interopDefault(_selection);
 // todo allow user input for random numbers
 let sortProps = {
     arr: (0, _helpers.generateRandomNumbers)({
@@ -571,15 +573,22 @@ let sortProps = {
         max: 100
     })
 };
-let props = {
+let bubbleProps = {
     sortProps,
     sortFn: (0, _bubbleDefault.default),
     maxNumber: (0, _helpers.findMaxNumber)(sortProps.arr),
-    containerSelector: '[data-component="BubbleSort"]'
+    containerSelector: '[data-component-sorts="BubbleSort"]'
 };
-new (0, _sortVisualizerDefault.default)(props);
+const bubbleSortViz = new (0, _sortVisualizerDefault.default)(bubbleProps);
+let selectionProps = {
+    sortProps,
+    sortFn: (0, _selectionDefault.default),
+    maxNumber: (0, _helpers.findMaxNumber)(sortProps.arr),
+    containerSelector: '[data-component-sorts="SelectionSort"]'
+};
+const selectionSortViz = new (0, _sortVisualizerDefault.default)(selectionProps);
 
-},{"../../src/lib/helpers":"2nhj8","../../src/lib/sorts/bubble":"28QTb","./components/SortVisualizer":"4D9fF","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"4D9fF":[function(require,module,exports) {
+},{"../../src/lib/helpers":"2nhj8","../../src/lib/sorts/bubble":"28QTb","./components/SortVisualizer":"4D9fF","../../src/lib/sorts/selection":"bVSfG","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"4D9fF":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _helpers = require("../../../src/lib/helpers");
@@ -631,6 +640,7 @@ class SortVisualizer {
     animationSpeedContainer = null;
     animationSpeedLabel = null;
     loaderMessage = null;
+    componentMounted = false;
     constructor(props){
         this.initialArray = props.sortProps.arr;
         this.currentArray = [
@@ -652,6 +662,7 @@ class SortVisualizer {
         this.createButtons();
         this.createAnimationSpeed();
         this.attachListeners();
+        this.componentMounted = true;
     };
     renderBars = ()=>{
         const barContainer = document.createElement("div");
@@ -788,7 +799,7 @@ class SortVisualizer {
             console.error("barContainer is not initialized");
             return;
         }
-        const bars = this.barContainer.children;
+        const bars = Array.from(this.barContainer.children);
         const bar1 = bars[i];
         const bar2 = bars[j];
         const originalColor1 = bar1.style.background;
@@ -808,20 +819,24 @@ class SortVisualizer {
         bar2.style.transform = `translateX(${-xDifference}px)`;
         if (this.isLoading) return;
         await (0, _helpers.sleep)(duration);
+        // Swap the elements in the DOM
+        const bar1Clone = bar1.cloneNode(true);
+        const bar2Clone = bar2.cloneNode(true);
+        this.barContainer.replaceChild(bar1Clone, bar2);
+        this.barContainer.replaceChild(bar2Clone, bar1);
+        // Wait for the DOM update to be completed
+        await (0, _helpers.sleep)(0);
         // Reset the transform property after the animation
-        bar1.style.transform = "translateX(0)";
-        bar2.style.transform = "translateX(0)";
+        bar1Clone.style.transform = "translateX(0)";
+        bar2Clone.style.transform = "translateX(0)";
         // Restore the original opacity and background colors
-        bar1.style.opacity = "1";
-        bar2.style.opacity = "1";
-        bar1.style.background = originalColor1;
-        bar2.style.background = originalColor2;
+        bar1Clone.style.opacity = "1";
+        bar2Clone.style.opacity = "1";
+        bar1Clone.style.background = originalColor1;
+        bar2Clone.style.background = originalColor2;
         // Remove the transition properties after the animation
-        bar1.style.transition = "";
-        bar2.style.transition = "";
-        // Update the DOM elements
-        this.barContainer.insertBefore(bar2, bar1);
-        this.barContainer.insertBefore(bar1, bars[j]);
+        bar1Clone.style.transition = "";
+        bar2Clone.style.transition = "";
     };
     updateDOM = async (duration = 0)=>{
         const input = {
