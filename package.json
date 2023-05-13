@@ -1,6 +1,6 @@
 {
 	"name": "collection-of-algos",
-	"version": "1.0.19",
+	"version": "1.0.20",
 	"description": "A collection of mostly common algorithms, data structures with visualizations and explanations.",
 	"author": {
 		"name": "William Pei Yuan",
@@ -21,8 +21,10 @@
 		"deploy": "npm version patch && yarn build && yarn publish"
 	},
 	"devDependencies": {
+		"@parcel/packager-raw-url": "2.8.3",
 		"@parcel/packager-ts": "2.8.3",
 		"@parcel/transformer-typescript-types": "2.8.3",
+		"@parcel/transformer-webmanifest": "2.8.3",
 		"@types/jest": "^29.5.0",
 		"@types/node": "^20.1.3",
 		"jest": "^29.5.0",

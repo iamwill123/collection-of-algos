@@ -71,4 +71,37 @@ describe('Bubble sort', () => {
 		const { arr: arrOfObjs } = await bubble(obj)
 		expect(arrOfObjs).toEqual(sorted({ key, order }).arr.objects)
 	})
+
+	test('cases[5]: ' + cases[5], async () => {
+		const obj = {
+			arr: unsorted().arr.numbers,
+			isSorting: () => false,
+		}
+		const { arr: arrOfNums } = await bubble(obj)
+		expect(arrOfNums).toEqual(unsorted().arr.numbers)
+	})
+
+	test('cases[6]: ' + cases[6], async () => {
+		const obj = {
+			arr: unsorted().arr.numbers,
+			callback: async (a: number, b: number) => {
+				return await Promise.resolve()
+			},
+		}
+		const { arr: arrOfNums, animate } = await bubble(obj)
+		expect(arrOfNums).toEqual(sorted().arr.numbers)
+		expect(animate).toEqual(true)
+	})
+
+	test('cases[7]: ' + cases[7], async () => {
+		const obj = {
+			arr: unsorted().arr.numbers,
+			callback: async () => {
+				return await Promise.resolve()
+			},
+		}
+		const { arr: arrOfNums, animate } = await bubble(obj)
+		expect(arrOfNums).toEqual(sorted().arr.numbers)
+		expect(animate).toEqual(false)
+	})
 })

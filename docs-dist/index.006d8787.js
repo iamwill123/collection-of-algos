@@ -573,8 +573,6 @@ var _insertion = require("./lib/sorts/insertion");
 var _insertionDefault = parcelHelpers.interopDefault(_insertion);
 
 },{"./lib/sorts/bubble":"28QTb","./lib/sorts/native":"61f6A","./lib/sorts/selection":"bVSfG","./lib/sorts/insertion":"ezuOS","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"28QTb":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
 /*
 bubble sort is a simple sorting algorithm that repeatedly steps through the list to be sorted, compares each pair of adjacent items and swaps them if they are in the wrong order. The pass through the list is repeated until no swaps are needed, which indicates that the list is sorted.
 
@@ -585,7 +583,9 @@ The space complexity of bubble sort is O(1).
 - The parameter arr is the array to sort.
 - The parameter n is the number of elements in the array.
 - The function returns the sorted array.
-*/ var _helpers = require("../../helpers");
+*/ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _helpers = require("../../helpers");
 async function bubble(input) {
     const _s = (0, _helpers.startTime)();
     const { arr , order ="asc" , key ="" , callback =()=>{} , isSorting =()=>true  } = input;
@@ -743,10 +743,11 @@ Selection sort, find the smallest element in the array, then swap with the first
 */ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _helpers = require("../../helpers");
-function selection(input) {
+async function selection(input) {
     const _s = (0, _helpers.startTime)();
-    const { arr , order ="asc" , key =""  } = input;
+    const { arr , order ="asc" , key ="" , callback =()=>{} , isSorting =()=>true  } = input;
     const n = arr.length;
+    let animate = false;
     if (n <= 1) return {
         arr,
         key,
@@ -754,10 +755,20 @@ function selection(input) {
         n,
         execTime: 0
     };
+    if ((0, _helpers.isAnObj)(0, arr) && !key) throw new Error("key is required");
     for(let k = 0; k < n - 1; k++){
         // initialize min to k, the first element
         let min = k;
         for(let i = k + 1; i < n; i++){
+            if (!isSorting()) // Check if sorting is paused
+            return {
+                arr,
+                key,
+                order,
+                n,
+                execTime: 0,
+                animate: false
+            };
             // find where the smallest element is and grab it's index
             const leftNum = (0, _helpers.isAsc)(order) ? i : min;
             const rightNum = (0, _helpers.isAsc)(order) ? min : i;
@@ -765,10 +776,18 @@ function selection(input) {
             let _rightNum = (0, _helpers.isAnObj)(rightNum, arr) ? arr[rightNum][key] : arr[rightNum];
             if (_leftNum < _rightNum) min = i;
         }
-        [arr[k], arr[min]] = [
-            arr[min],
-            arr[k]
-        ];
+        if (k !== min) {
+            // Only call the callback if we're actually going to swap elements
+            if (callback.length && isSorting()) {
+                animate = true;
+                await callback(k, min) // animate swap
+                ;
+            }
+            [arr[k], arr[min]] = [
+                arr[min],
+                arr[k]
+            ];
+        }
     }
     const _e = (0, _helpers.endTime)();
     const execTimeInMs = (0, _helpers.howLongExecTook)(_s, _e);
@@ -777,7 +796,8 @@ function selection(input) {
         key,
         order,
         n,
-        execTime: execTimeInMs
+        execTime: execTimeInMs,
+        animate
     };
 }
 exports.default = selection;

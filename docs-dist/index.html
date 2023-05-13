@@ -3,24 +3,168 @@
 
 <head>
   <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.2f3415e0.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.daadc22e.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.5110a1db.png">
+  <link rel="manifest" href="/favicon_io/site.webmanifest">
+  <meta name="description" content="Explore and learn algorithms with our interactive visualizer and comprehensive documentation in JavaScript. Discover the inner workings of algorithms with step-by-step animations and detailed explanations.">
+  <meta name="keywords" content="algorithm visualizer, algorithm documentation, JavaScript algorithms, interactive algorithms, step-by-step animations">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://collection-of-algos.vercel.app/">
+  <meta property="og:title" content="Algorithm Visualizer and Documentation in JavaScript">
+  <meta property="og:description" content="Explore and learn algorithms with our interactive visualizer and comprehensive documentation in JavaScript. Discover the inner workings of algorithms with step-by-step animations and detailed explanations.">
+  <meta property="og:image" content="https://collection-of-algos.vercel.app/algorithm-visualizer.png">
+  <meta property="og:url" content="https://collection-of-algos.vercel.app/">
+
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/index.ebd1e315.css">
   <link rel="stylesheet" href="/index.cc5d767a.css">
-  <title>Documentation for the algos library</title>
+  <title>Algorithm Visualizer and Documentation in JavaScript</title>
 </head>
 
 <body>
-  <h1>Algo documentation</h1>
-  <p>There are two basic operations in sorting algorithms: comparison and swapping. </p>
-  <ul>
-    <li>Comparison is used to determine the
-      order of two elements (i.e. whether they are equal, greater than one another, or less than one another).</li>
-    <li>Swapping is
-      used to reorder a collection by moving elements around.</li>
-  </ul>
 
-  <h2>Bubble sort</h2>
-  <div data-component="BubbleSort"></div>
+  <main>
+    <h1>Algorithm Visualizer</h1>
+    <p>There are two basic operations in sorting algorithms, "comparison and swapping". </p>
+    <ul>
+      <li>Comparison: is used to determine the
+        order of two elements.
+        <ul>
+          <li>
+            i.e. whether they are equal, greater than one another, or less than one another.</li>
+        </ul>
+      </li>
+      <li>Swapping: is used to reorder a collection by moving elements around.</li>
+    </ul>
+    <div class="sorts">
+      <div class="container-BubbleSort">
+        <h2>Bubble Sort</h2>
+
+        <p>
+          Bubble sort, also known as sinking sort, is a simple yet intuitive sorting algorithm. It works by repeatedly
+          stepping
+          through a list to be sorted, comparing each pair of adjacent items, and swapping them if they are in the wrong
+          order.
+          The procedure is repeated from the beginning until no more swaps are needed, indicating that the list is
+          sorted.
+        </p>
+
+        <div data-component-sorts="BubbleSort"></div>
+
+        <h2>How Bubble Sort Works</h2>
+
+        <ol>
+          <li>Start at the beginning of the list.</li>
+          <li>Compare the first and second elements.
+            <ul>
+              <li>If the first element is greater than the second, swap them.</li>
+            </ul>
+          </li>
+          <li>Move to the next pair of elements (second and third). Repeat the comparison and potential swap.</li>
+          <li>Continue this process to the end of the list.</li>
+          <li>Once the end of the list is reached, start again from the beginning. Repeat the entire process.</li>
+          <li>Continue these passes through the list until a full pass is made with no swaps occurring.</li>
+        </ol>
+
+        <p>
+          Bubble sort gets its name because with each complete pass through the list, the largest unsorted element
+          "bubbles" up
+          to its correct position.
+        </p>
+
+        <h2>Complexity of Bubble Sort</h2>
+
+        <h3>Time Complexity:</h3>
+        <ul>
+          <li>Worst-case: O(n^2) - this is when the list is in reverse order.</li>
+          <li>Best-case: O(n) - this is when the list is already sorted. The only work bubble sort does in this case is
+            to
+            check
+            that the list is sorted.</li>
+        </ul>
+
+        <h3>Space Complexity:</h3>
+        <ul>
+          <li>O(1) - Bubble sort is a space-efficient algorithm as it only requires a single additional memory space for
+            its
+            temporary storage (swap).</li>
+        </ul>
+
+        <p>
+          Despite its simplicity, bubble sort is not typically used for large (or even medium-sized) datasets due to its
+          quadratic time complexity. More efficient sorting algorithms like quicksort, mergesort, or heapsort are
+          generally
+          preferred for larger lists. However, bubble sort has its niche in teaching scenarios due to its simplicity and
+          ease of
+          understanding, and in cases where the input is small or nearly sorted.
+        </p>
+      </div>
+
+      <div class="container-SelectionSort">
+        <h2>Selection Sort</h2>
+
+        <p>
+          Selection sort is a simple, in-place sorting algorithm. The main concept behind selection sort is dividing the
+          input
+          list into two parts: the sorted part and the unsorted part. Initially, the sorted part is empty while the
+          unsorted
+          part contains all the elements. With each iteration, the smallest (or largest, depending on the sorting order)
+          element
+          from the unsorted part is selected and moved to the sorted part.
+        </p>
+        <div data-component-sorts="SelectionSort"></div>
+
+        <h2>How Selection Sort Works</h2>
+
+        <ol>
+          <li>Find the minimum element in the list, assuming the first element to be the minimum initially.</li>
+          <li>Swap the found minimum element with the first element of the list.</li>
+          <li>Move the sublist boundary one element to the right.</li>
+          <li>Repeat the process starting from the first element in the unsorted part of the list.</li>
+          <li>Continue this until all elements are sorted.</li>
+        </ol>
+
+        <h2>Complexity of Selection Sort</h2>
+
+        <h3>Time Complexity:</h3>
+        <ul>
+          <li>Worst-case: O(n^2) - The worst case scenario is when the largest element is always the first element in
+            the
+            unsorted part.</li>
+          <li>Best-case: O(n^2) - Even when the list is already sorted, selection sort will still scan the entire list.
+          </li>
+        </ul>
+
+        <h3>Space Complexity:</h3>
+        <ul>
+          <li>O(1) - Selection sort is an in-place sorting algorithm, and does not require any extra space apart from a
+            variable
+            to hold the swapping element.</li>
+        </ul>
+
+        <p>
+          Similar to bubble sort, selection sort is not typically used for large datasets due to its quadratic time
+          complexity.
+          It is mainly used for educational purposes and for small datasets, especially where auxiliary memory is
+          limited.
+        </p>
+
+
+      </div>
+
+    </div>
+  </main>
+  <footer>
+    <div>
+      <p>© 2023 created by <a href="https://www.linkedin.com/in/williampeiyuan/" target="_blank">William Yuan</a></p>
+    </div>
+    <div>
+      <p><a href="https://github.com/iamwill123/collection-of-algos" target="_blank">Github repo</a>
+      </p>
+    </div>
+  </footer>
   <!-- core algorithms library  -->
   <script src="/index.006d8787.js" defer=""></script>
   <!-- UI components library -->
