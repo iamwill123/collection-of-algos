@@ -563,6 +563,7 @@ parcelHelpers.export(exports, "nativeSort", ()=>(0, _nativeDefault.default));
 parcelHelpers.export(exports, "bubbleSort", ()=>(0, _bubbleDefault.default));
 parcelHelpers.export(exports, "selectionSort", ()=>(0, _selectionDefault.default));
 parcelHelpers.export(exports, "insertionSort", ()=>(0, _insertionDefault.default));
+parcelHelpers.export(exports, "mergeSort", ()=>(0, _mergeDefault.default));
 var _bubble = require("./lib/sorts/bubble");
 var _bubbleDefault = parcelHelpers.interopDefault(_bubble);
 var _native = require("./lib/sorts/native");
@@ -571,8 +572,10 @@ var _selection = require("./lib/sorts/selection");
 var _selectionDefault = parcelHelpers.interopDefault(_selection);
 var _insertion = require("./lib/sorts/insertion");
 var _insertionDefault = parcelHelpers.interopDefault(_insertion);
+var _merge = require("./lib/sorts/merge");
+var _mergeDefault = parcelHelpers.interopDefault(_merge);
 
-},{"./lib/sorts/bubble":"28QTb","./lib/sorts/native":"61f6A","./lib/sorts/selection":"bVSfG","./lib/sorts/insertion":"ezuOS","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"28QTb":[function(require,module,exports) {
+},{"./lib/sorts/bubble":"28QTb","./lib/sorts/native":"61f6A","./lib/sorts/selection":"bVSfG","./lib/sorts/insertion":"ezuOS","./lib/sorts/merge":"OTFHq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"28QTb":[function(require,module,exports) {
 /*
 bubble sort is a simple sorting algorithm that repeatedly steps through the list to be sorted, compares each pair of adjacent items and swaps them if they are in the wrong order. The pass through the list is repeated until no swaps are needed, which indicates that the list is sorted.
 
@@ -596,7 +599,8 @@ async function bubble(input) {
         key,
         order,
         n,
-        execTime: 0
+        execTime: 0,
+        animate: false
     };
     if ((0, _helpers.isAnObj)(0, arr) && !key) throw new Error("key is required");
     for(let i = 0; i < n; i++)for(let j = 0; j < n - i - 1; j++){
@@ -638,7 +642,8 @@ async function bubble(input) {
         animate
     };
 }
-exports.default = bubble;
+exports.default = bubble // todo add page tracking for documentation page, utilize a way to select and load a specific page or sort.
+;
 
 },{"../../helpers":"2nhj8","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"2nhj8":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -815,18 +820,29 @@ exports.default = selection;
 */ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _helpers = require("../../helpers");
-function insertion(input) {
+async function insertion(input) {
     const _s = (0, _helpers.startTime)();
-    const { arr , order ="asc" , key =""  } = input;
+    const { arr , order ="asc" , key ="" , callback =()=>{} , isSorting =()=>true  } = input;
     const n = arr.length;
+    let animate = false;
     if (n <= 1) return {
         arr,
         key,
         order,
         n,
-        execTime: 0
+        execTime: 0,
+        animate: false
     };
     for(let i = 1; i < n; i++){
+        if (!isSorting()) // Check if sorting is paused
+        return {
+            arr,
+            key,
+            order,
+            n,
+            execTime: 0,
+            animate: false
+        };
         let currentVal = arr[i];
         // j is the index to the left of the current index
         let j = i - 1;
@@ -835,6 +851,11 @@ function insertion(input) {
         while(j >= 0 && compare(arr[j], currentVal, key, order) > 0){
             // shift larger numbers to the right
             arr[j + 1] = arr[j];
+            if (callback.length && isSorting()) {
+                animate = true;
+                await callback(j, j + 1) // animate
+                ;
+            }
             j--;
         }
         // insert to the right of the smallest number
@@ -847,7 +868,8 @@ function insertion(input) {
         key,
         order,
         n,
-        execTime: execTimeInMs
+        execTime: execTimeInMs,
+        animate
     };
 }
 // compare is a helper function that compares two numbers or two objects by a key and order (asc or desc) and returns a number (-1, 0, or 1) based on the comparison.
@@ -861,6 +883,91 @@ function compare(a, b, key = "", order = "asc") {
     else throw new Error(`Invalid order: ${order}.`);
 }
 exports.default = insertion;
+
+},{"../../helpers":"2nhj8","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"OTFHq":[function(require,module,exports) {
+/*
+merge sort is a divide and conquer algorithm that was invented by John von Neumann in 1945. A detailed description and analysis of bottom-up mergesort appeared in a report by Goldstine and von Neumann as early as 1948. It is a comparison-based algorithm that focuses on how to merge together two pre-sorted arrays such that the resulting array is also sorted. The time complexity of merge sort is O(n log n) in the worst case and O(n log n) in the best case. The space complexity of merge sort is O(n).
+*/ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _helpers = require("../../helpers");
+async function merge_sort(input) {
+    const _s = (0, _helpers.startTime)();
+    const { arr , order ="asc" , key ="" , callback =()=>{} , isSorting =()=>true  } = input;
+    const n = arr.length;
+    let animate = false;
+    if (n <= 1 || !isSorting()) return {
+        arr,
+        key,
+        order,
+        n,
+        execTime: 0,
+        animate: false
+    };
+    if ((0, _helpers.isAnObj)(0, arr) && !key) throw new Error("key is required");
+    const middle = Math.floor(n / 2) // get the middle item of the array rounded down
+    ;
+    const left = arr.slice(0, middle) // items on the left side
+    ;
+    const right = arr.slice(middle) // items on the right side
+    ;
+    const { arr: sortedLeft  } = await merge_sort({
+        arr: left,
+        order,
+        key
+    });
+    const { arr: sortedRight  } = await merge_sort({
+        arr: right,
+        order,
+        key
+    });
+    const merged = merge(sortedLeft, sortedRight, order, key);
+    const _e = (0, _helpers.endTime)();
+    const execTimeInMs = (0, _helpers.howLongExecTook)(_s, _e);
+    return {
+        arr: merged,
+        key,
+        order,
+        n,
+        execTime: execTimeInMs,
+        animate
+    };
+}
+// compare the arrays item by item and return the concatenated result
+function merge(left, right, order, key) {
+    const merged = [];
+    let indexLeft = 0;
+    let indexRight = 0;
+    while(indexLeft < left.length && indexRight < right.length){
+        const leftValue = key ? left[indexLeft][key] : left[indexLeft];
+        const rightValue = key ? right[indexRight][key] : right[indexRight];
+        // Todo: add animation logic
+        // if (callback.length && isSorting()) {
+        // 	animate = true
+        // 	await callback(leftNum, rightNum) // animate swap
+        // }
+        if ((0, _helpers.isAsc)(order) && leftValue < rightValue || !(0, _helpers.isAsc)(order) && leftValue > rightValue) {
+            merged.push(left[indexLeft]);
+            indexLeft++;
+        } else {
+            merged.push(right[indexRight]);
+            indexRight++;
+        }
+    }
+    // in case one of the arrays has remaining items due to unequal lengths, we add them to the result array as well (the items left are already sorted)
+    const remainingLeft = left.slice(indexLeft);
+    const remainingRight = right.slice(indexRight);
+    return merged.concat(remainingLeft, remainingRight);
+}
+exports.default = merge_sort // we can also use while loops instead
+ //  while (indexLeft < left.length) {
+ // 		result.push(left[indexLeft])
+ // 		indexLeft++
+ // 	}
+ // 	while (indexRight < right.length) {
+ // 		result.push(right[indexRight])
+ // 		indexRight++
+ // 	}
+;
 
 },{"../../helpers":"2nhj8","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["4K1yG","h7u1C"], "h7u1C", "parcelRequire197b")
 

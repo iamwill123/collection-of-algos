@@ -154,6 +154,54 @@
 
       </div>
 
+      <div class="container-Insertion-sort">
+        <h2>Insertion Sort</h2>
+
+        <p>
+          Insertion sort is a simple and intuitive sorting algorithm. It works by dividing the input list into two
+          parts: the
+          sorted part at the left end and the unsorted part at the right end. Initially, the sorted part just includes
+          the first
+          element of the array.
+        </p>
+        <div data-component-sorts="InsertionSort"></div>
+        <h2>How Insertion Sort Works</h2>
+
+        <ol>
+          <li>Pick the first element in the unsorted part of the list.</li>
+          <li>Compare this element with elements in the sorted part of the list, moving from right to left.</li>
+          <li>If the current element in the sorted part of the list is larger than the selected element, move the
+            current
+            element to the right.</li>
+          <li>Insert the selected element in the correct position within the sorted part of the list.</li>
+          <li>Repeat the process until the entire list is sorted.</li>
+        </ol>
+
+        <h2>Complexity of Insertion Sort</h2>
+
+        <h3>Time Complexity:</h3>
+        <ul>
+          <li>Worst-case: O(n^2) - The worst case occurs when the list is sorted in reverse order.</li>
+          <li>Best-case: O(n) - The best case occurs when the list is already sorted.</li>
+        </ul>
+
+        <h3>Space Complexity:</h3>
+        <ul>
+          <li>O(1) - Insertion sort is an in-place sorting algorithm, and doesn't require any extra space apart from a
+            variable
+            to hold the element being compared.</li>
+        </ul>
+
+        <p>
+          Insertion sort is an efficient algorithm for sorting a small number of elements, but for larger datasets,
+          algorithms
+          with faster running times like quicksort, heapsort, or mergesort are more suitable. However, insertion sort is
+          more
+          efficient in cases where the list is "almost sorted" since it can take advantage of this to reduce its sorting
+          time.
+        </p>
+
+      </div>
     </div>
   </main>
   <footer>

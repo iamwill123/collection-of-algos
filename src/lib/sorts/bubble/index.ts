@@ -32,7 +32,7 @@ async function bubble(input: SortInput): Promise<SortOutput> {
 	let animate: boolean = false
 
 	if (n <= 1) {
-		return { arr, key, order, n, execTime: 0 }
+		return { arr, key, order, n, execTime: 0, animate: false }
 	}
 
 	if (isAnObj(0, arr) && !key) throw new Error('key is required')

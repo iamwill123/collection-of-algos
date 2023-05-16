@@ -1,4 +1,4 @@
-[data-component-sorts="BubbleSort"], [data-component-sorts="SelectionSort"] {
+[data-component-sorts] {
   text-align: center;
   flex-direction: column;
   align-items: center;
