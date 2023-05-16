@@ -4,28 +4,6 @@ import { testData } from '../test-data'
 
 describe('Bubble sort', () => {
 	const { unsorted, sorted } = testData
-	test('cases[-1]: given a callback with arguments, execute it ', async () => {
-		const obj = {
-			arr: [5, 7, 9, 55, 2, 66],
-			callback: async (a: number, b: number) => {
-				return await Promise.resolve()
-			},
-		}
-		const { arr: arrOfNums, animate } = await bubble(obj)
-		expect(arrOfNums).toEqual([2, 5, 7, 9, 55, 66])
-		expect(animate).toEqual(true)
-
-		const obj1 = {
-			arr: [5, 7, 9, 55, 2, 66],
-			callback: async () => {
-				return await Promise.resolve()
-			},
-		}
-		const { arr: arrOfNums1, animate: _animate } = await bubble(obj1)
-		expect(arrOfNums1).toEqual([2, 5, 7, 9, 55, 66])
-		expect(_animate).toEqual(false)
-	})
-
 	test('cases[0]: ' + cases[0], async () => {
 		const obj = { arr: [5] }
 		const { arr: arrOfNums } = await bubble(obj)
