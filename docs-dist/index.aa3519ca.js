@@ -565,7 +565,9 @@ var _sortVisualizer = require("./components/SortVisualizer");
 var _sortVisualizerDefault = parcelHelpers.interopDefault(_sortVisualizer);
 var _selection = require("../../src/lib/sorts/selection");
 var _selectionDefault = parcelHelpers.interopDefault(_selection);
-// todo allow user input for random numbers
+var _insertion = require("../../src/lib/sorts/insertion");
+var _insertionDefault = parcelHelpers.interopDefault(_insertion);
+// todo: allow user input for random numbers
 let sortProps = {
     arr: (0, _helpers.generateRandomNumbers)({
         n: 15,
@@ -587,8 +589,15 @@ let selectionProps = {
     containerSelector: '[data-component-sorts="SelectionSort"]'
 };
 const selectionSortViz = new (0, _sortVisualizerDefault.default)(selectionProps);
+let insertionProps = {
+    sortProps,
+    sortFn: (0, _insertionDefault.default),
+    maxNumber: (0, _helpers.findMaxNumber)(sortProps.arr),
+    containerSelector: '[data-component-sorts="InsertionSort"]'
+};
+const insertionSortViz = new (0, _sortVisualizerDefault.default)(insertionProps);
 
-},{"../../src/lib/helpers":"2nhj8","../../src/lib/sorts/bubble":"28QTb","./components/SortVisualizer":"4D9fF","../../src/lib/sorts/selection":"bVSfG","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"4D9fF":[function(require,module,exports) {
+},{"../../src/lib/helpers":"2nhj8","../../src/lib/sorts/bubble":"28QTb","./components/SortVisualizer":"4D9fF","../../src/lib/sorts/selection":"bVSfG","../../src/lib/sorts/insertion":"ezuOS","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"4D9fF":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _helpers = require("../../../src/lib/helpers");
