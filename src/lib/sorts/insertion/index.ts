@@ -10,6 +10,7 @@
 */
 
 import {
+	compare,
 	endTime,
 	howLongExecTook,
 	isAsc,
@@ -62,27 +63,6 @@ async function insertion(input: SortInput): Promise<SortOutput> {
 	const _e = endTime()
 	const execTimeInMs = howLongExecTook(_s, _e)
 	return { arr, key, order, n, execTime: execTimeInMs, animate }
-}
-
-// compare is a helper function that compares two numbers or two objects by a key and order (asc or desc) and returns a number (-1, 0, or 1) based on the comparison.
-function compare(
-	a: NumberOrObject,
-	b: NumberOrObject,
-	key = '',
-	order = 'asc'
-): number {
-	if (key) {
-		a = a[key]
-		b = b[key]
-	}
-
-	if (isAsc(order)) {
-		return a < b ? -1 : a > b ? 1 : 0
-	} else if (isDesc(order)) {
-		return a > b ? -1 : a < b ? 1 : 0
-	} else {
-		throw new Error(`Invalid order: ${order}.`)
-	}
 }
 
 export default insertion

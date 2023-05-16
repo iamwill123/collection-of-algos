@@ -108,3 +108,4 @@ yarn coverage
 
 - [ ] Think about separating each algo into its own page
 - [ ] Add notes and drawings for each algo
+- [ ] Unit the helper functions
