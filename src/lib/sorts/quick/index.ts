@@ -42,7 +42,6 @@ async function quick_sort(
 
 	let animate: boolean = false
 
-	// base case
 	if (n <= 0 || !isSorting()) {
 		return { arr, key, order, n, execTime: 0, animate: false }
 	}
@@ -86,6 +85,7 @@ function helper(helperInput: HelperInput) {
 		animate,
 	} = helperInput
 
+	// base case
 	// the leaf workers either 1 or 0
 	if (startIdx >= endIdx) return
 

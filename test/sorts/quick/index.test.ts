@@ -83,4 +83,22 @@ describe('quick sort', () => {
 	// 	expect(arrOfNums).toEqual(sorted().arr.numbers)
 	// 	expect(animate).toEqual(false)
 	// })
+	test('cases[8]: should sort correctly when switching partition type to "hoare"', async () => {
+		const partitionType = 'hoare'
+		const obj = {
+			arr: unsorted().arr.numbers,
+		}
+		const { arr: arrOfNums } = await quick(obj, partitionType)
+		expect(arrOfNums).toEqual(sorted().arr.numbers)
+
+		let key = 'height',
+			order = 'desc'
+		const obj1 = {
+			arr: unsorted({ key }).arr.objects,
+			key,
+			order,
+		}
+		const { arr: arrOfObjs } = await quick(obj1, partitionType)
+		expect(arrOfObjs).toEqual(sorted({ key, order }).arr.objects)
+	})
 })
