@@ -12,7 +12,21 @@ import {
 } from '../../helpers'
 import { ArrayInput, SortInput, SortOutput } from '../../../types/sorts'
 
-async function quick_sort(input: SortInput): Promise<SortOutput> {
+type HelperInput = {
+	arr: ArrayInput
+	startIdx: number
+	endIdx: number
+	partitionType: string
+	order: string
+	key: string
+	callback: Function
+	animate: boolean
+}
+
+async function quick_sort(
+	input: SortInput,
+	partitionType: string = 'lomuto'
+): Promise<SortOutput> {
 	const _s = startTime()
 	const {
 		arr,
@@ -36,7 +50,16 @@ async function quick_sort(input: SortInput): Promise<SortOutput> {
 	if (isAnObj(0, arr) && !key) throw new Error('key is required')
 
 	// recursive case
-	helper(arr, startIdx, endIdx, order, key, callback, animate)
+	helper({
+		arr,
+		startIdx,
+		endIdx,
+		partitionType,
+		order,
+		key,
+		callback,
+		animate,
+	})
 
 	const _e = endTime()
 	const execTimeInMs = howLongExecTook(_s, _e)
@@ -51,15 +74,18 @@ async function quick_sort(input: SortInput): Promise<SortOutput> {
 	}
 }
 
-function helper(
-	arr: ArrayInput,
-	startIdx: number,
-	endIdx: number,
-	order: string,
-	key: string,
-	callback: Function,
-	animate: boolean
-) {
+function helper(helperInput: HelperInput) {
+	const {
+		arr,
+		startIdx,
+		endIdx,
+		partitionType,
+		order,
+		key,
+		callback,
+		animate,
+	} = helperInput
+
 	// the leaf workers either 1 or 0
 	if (startIdx >= endIdx) return
 
@@ -68,24 +94,53 @@ function helper(
 	// make the pivot value the start of the array
 	;[arr[startIdx], arr[pivotIdx]] = [arr[pivotIdx], arr[startIdx]]
 
-	// lomuto's partitioning
-	let smaller = startIdx,
-		bigger = startIdx
+	let smaller = 0,
+		bigger = 0
 
-	for (let i = bigger + 1; i <= endIdx; i++) {
-		// compare the next number at "bigger" to the pivot elem at startIdx
-		if (compare(arr[i], pivotElem, key, order) < 0) {
-			smaller++
-			;[arr[smaller], arr[i]] = [arr[i], arr[smaller]]
+	if (partitionType === 'hoare') {
+		// hoare's partitioning
+		smaller = startIdx + 1
+		bigger = endIdx
+
+		while (smaller <= bigger) {
+			// compare the next number at "smaller" to the pivot elem at startIdx
+			if (compare(arr[smaller], pivotElem, key, order) <= 0) {
+				smaller++
+			} else if (compare(arr[bigger], pivotElem, key, order) > 0) {
+				bigger--
+			} else {
+				;[arr[smaller], arr[bigger]] = [arr[bigger], arr[smaller]]
+				smaller++
+				bigger--
+			}
 		}
-	}
-	// put the pivot element to where the smaller index left off after the loop
-	;[arr[startIdx], arr[smaller]] = [arr[smaller], arr[startIdx]]
-	// new pivotIndex for the next subarrays
 
-	// recursive case
-	helper(arr, startIdx, smaller - 1, order, key, callback, animate)
-	helper(arr, smaller + 1, endIdx, order, key, callback, animate)
+		// put the pivot element to where the smaller index left off after the loop
+		;[arr[startIdx], arr[bigger]] = [arr[bigger], arr[startIdx]]
+
+		// recursive case
+		helper({ ...helperInput, endIdx: bigger }) // include the pivot in the first half
+		helper({ ...helperInput, startIdx: bigger + 1 }) // start from the next element of the pivot
+	}
+
+	if (partitionType === 'lomuto') {
+		// lomuto's partitioning
+		smaller = startIdx
+		bigger = startIdx
+		for (let i = bigger + 1; i <= endIdx; i++) {
+			// compare the next number at "bigger" to the pivot elem at startIdx
+			if (compare(arr[i], pivotElem, key, order) < 0) {
+				smaller++
+				;[arr[smaller], arr[i]] = [arr[i], arr[smaller]]
+			}
+		}
+		// put the pivot element to where the smaller index left off after the loop
+		;[arr[startIdx], arr[smaller]] = [arr[smaller], arr[startIdx]]
+
+		// recursive case
+		helper({ ...helperInput, endIdx: smaller - 1 })
+		helper({ ...helperInput, startIdx: smaller + 1 })
+	}
 }
 
 export default quick_sort
