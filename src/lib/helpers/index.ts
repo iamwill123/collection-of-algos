@@ -1,4 +1,9 @@
-import { ArrayInput, GenerateRandomNumbers, SortOrder } from '../../types/sorts'
+import {
+	ArrayInput,
+	GenerateRandomNumbers,
+	NumberOrObject,
+	SortOrder,
+} from '../../types/sorts'
 
 const startTime = () => Date.now()
 const endTime = () => Date.now()
@@ -28,6 +33,31 @@ const generateRandomNumbers = ({
 const sleep = (ms: number): Promise<void> => {
 	return new Promise((resolve) => setTimeout(resolve, ms))
 }
+
+const pickRandomIndex = (start: number, end: number) =>
+	Math.floor(Math.random() * (end - start + 1) + start)
+
+// compare is a helper function that compares two numbers or two objects by a key and order (asc or desc) and returns a number (-1, 0, or 1) based on the comparison.
+const compare = (
+	a: NumberOrObject,
+	b: NumberOrObject,
+	key: string = '',
+	order: string = 'asc'
+): number => {
+	if (key) {
+		a = a[key]
+		b = b[key]
+	}
+
+	if (isAsc(order)) {
+		return a < b ? -1 : a > b ? 1 : 0
+	} else if (isDesc(order)) {
+		return a > b ? -1 : a < b ? 1 : 0
+	} else {
+		throw new Error(`Invalid order: ${order}.`)
+	}
+}
+
 export {
 	startTime,
 	endTime,
@@ -39,4 +69,6 @@ export {
 	generateRandomNumbers,
 	findMaxNumber,
 	sleep,
+	pickRandomIndex,
+	compare,
 }
