@@ -1,4 +1,4 @@
-### A continuing collection of good to know algorithms mainly in JS
+# A continuing collection of good to know algorithms mainly in JS
 
 It's also a library that can be used in your projects. It contains algos that are both common and un-common.
 
@@ -6,7 +6,7 @@ It's also a library that can be used in your projects. It contains algos that ar
 
 [![Edit example: collection of algos in reactjs](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/example-collection-of-algos-in-reactjs-rnsw71?fontsize=14&hidenavigation=1&theme=dark)
 
-### To use this package in your project
+## To use this package in your project
 
 First install the package (on npm as well [here](https://www.npmjs.com/package/collection-of-algos))
 
@@ -61,7 +61,7 @@ console.log(arrOfObjs)
 
 ```
 
-#### Work with this repo locally
+## Work with this repo locally
 
 In your terminal
 
@@ -86,7 +86,7 @@ docker-compose up
 docker-compose down
 ```
 
-#### Running unit tests
+## Running unit tests
 
 ``` bash
 # run all tests
@@ -96,10 +96,10 @@ yarn test
 yarn coverage
 ```
 
-#### local server to test functions locally (Ctrl-C to stop)
+## local server to test functions locally (Ctrl-C to stop)
 
 <http://localhost:3000>
 
-#### Connect with me
+## Connect with me
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/williampeiyuan/)
