@@ -7,8 +7,6 @@ import {
 	endTime,
 	howLongExecTook,
 	isAnObj,
-	isAsc,
-	isDesc,
 	pickRandomIndex,
 	startTime,
 } from '../../helpers'
