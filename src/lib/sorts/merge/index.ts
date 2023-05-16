@@ -65,6 +65,7 @@ function merge(
 	while (indexLeft < left.length && indexRight < right.length) {
 		const leftValue = key ? left[indexLeft][key] : left[indexLeft]
 		const rightValue = key ? right[indexRight][key] : right[indexRight]
+		// Todo: add animation logic
 		// if (callback.length && isSorting()) {
 		// 	animate = true
 		// 	await callback(leftNum, rightNum) // animate swap
