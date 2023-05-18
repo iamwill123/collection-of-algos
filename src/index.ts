@@ -5,6 +5,7 @@ import selectionSort from './lib/sorts/selection'
 import insertionSort from './lib/sorts/insertion'
 import mergeSort from './lib/sorts/merge'
 import quickSort from './lib/sorts/quick'
+import heapSort from './lib/sorts/heap'
 
 export {
 	generateRandomNumbers,
@@ -14,4 +15,5 @@ export {
 	insertionSort,
 	mergeSort,
 	quickSort,
+	heapSort,
 }
