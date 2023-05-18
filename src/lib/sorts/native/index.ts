@@ -13,7 +13,7 @@ import {
 	SortOutput,
 } from '../../../types/sorts'
 
-function native(input: SortInput): SortOutput {
+async function native(input: SortInput): Promise<SortOutput> {
 	const _s = startTime()
 	const { arr, order = 'asc', key = '' } = input
 	const n: number = arr.length
@@ -33,8 +33,12 @@ function native(input: SortInput): SortOutput {
 		}
 		return result
 	}
-	// Using JS native sort
-	const sorted: ArrayOutput = arr.sort(cb)
+
+	// Please note that this doesn't make the sort() function asynchronous or non-blocking. It just allows you to use await when calling native(), but the sort() function will still block the event loop while it's running. If your arrays are very large and sorting takes a significant amount of time, this might not be a good approach as it can still lead to your application becoming unresponsive.
+	const sorted: ArrayOutput = await new Promise((resolve) => {
+		resolve(arr.sort(cb))
+	})
+
 	const _e = endTime()
 	const execTimeInMs = howLongExecTook(_s, _e)
 
