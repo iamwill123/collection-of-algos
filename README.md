@@ -49,7 +49,7 @@ const obj2 = {
   ],
   key: 'age',
 }
-const { arr: arrOfObjs } = nativeSort(obj2)
+const { arr: arrOfObjs } = await nativeSort(obj2)
 
 console.log(arrOfObjs)
 // [
