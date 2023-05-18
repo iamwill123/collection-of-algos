@@ -31,8 +31,9 @@ async function bubble(input: SortInput): Promise<SortOutput> {
 	const n: number = arr.length
 	let animate: boolean = false
 
+	let defaultProp = { arr, key, order, n, execTime: 0, animate: false }
 	if (n <= 1) {
-		return { arr, key, order, n, execTime: 0, animate: false }
+		return defaultProp
 	}
 
 	if (isAnObj(0, arr) && !key) throw new Error('key is required')
@@ -40,7 +41,7 @@ async function bubble(input: SortInput): Promise<SortOutput> {
 		for (let j = 0; j < n - i - 1; j++) {
 			if (!isSorting()) {
 				// Check if sorting is paused
-				return { arr, key, order, n, execTime: 0, animate: false }
+				return defaultProp
 			}
 
 			const leftNum = isAsc(order) ? j : j + 1

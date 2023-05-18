@@ -17,6 +17,7 @@ function native(input: SortInput): SortOutput {
 	const _s = startTime()
 	const { arr, order = 'asc', key = '' } = input
 	const n: number = arr.length
+
 	if (n <= 1) {
 		return { arr, key, order, n, execTime: 0 }
 	}
