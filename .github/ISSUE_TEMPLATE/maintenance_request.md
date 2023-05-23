@@ -1,4 +1,11 @@
-## Maintenance Request
+---
+name: Maintenance Request
+about: Create a maintenance request to help us improve
+title: 'Maintenance needed!'
+labels: 'maintenance-request'
+assignees: ''
+
+---
 
 **Description:**
 A clear and concise description of the maintenance request.
