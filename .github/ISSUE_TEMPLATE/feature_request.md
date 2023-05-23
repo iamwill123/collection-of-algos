@@ -1,4 +1,11 @@
-## Feature Request
+---
+name: Feature Request
+about: Create a feature request to help us improve
+title: ''
+labels: ''
+assignees: ''
+
+---
 
 **Description:**
 A clear and concise description of the feature you are proposing.
