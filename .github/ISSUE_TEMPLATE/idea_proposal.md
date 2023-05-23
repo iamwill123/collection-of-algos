@@ -1,4 +1,11 @@
-## Idea Proposal
+---
+name: Idea Proposal
+about: Create an idea to help us improve
+title: 'Eureka!'
+labels: 'idea-proposal'
+assignees: ''
+
+---
 
 **Description:**
 A clear and concise description of your idea or proposal.
