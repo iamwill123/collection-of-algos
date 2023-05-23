@@ -1,8 +1,8 @@
 ---
 name: Feature Request
 about: Create a feature request to help us improve
-title: ''
-labels: ''
+title: 'Feature Request'
+labels: 'feature-request'
 assignees: ''
 
 ---
