@@ -7,6 +7,8 @@ const cases = {
 	5: 'should return the original array if isSorting is false',
 	6: 'should call the callback with the current array and set animation to true',
 	7: 'should not call the callback if not argument is provided and animation is false',
+	8: 'should sort a mixed array of alpha numerical values with floats in ascending order (by default) when provided an arr key with an [] of values (nums always before letters)',
+	9: 'should sort a mixed array of alpha numerical values with floats in descending order when provided an arr key with an [] of values, and a value of "desc" to the order prop (nums always before letters)',
 }
 
 export { cases }

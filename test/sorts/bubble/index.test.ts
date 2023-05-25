@@ -18,6 +18,10 @@ describe('Bubble sort', () => {
 		const obj = { arr: unsorted().arr.numbers }
 		const { arr: arrOfNums } = await bubble(obj)
 		expect(arrOfNums).toEqual(sorted().arr.numbers)
+
+		const obj1 = { arr: unsorted().arr.alphaNumericWithFloats }
+		const { arr: arrOfNums1 } = await bubble(obj1)
+		expect(arrOfNums1).toEqual(sorted().arr.alphaNumericWithFloats)
 	})
 
 	test('cases[2]: ' + cases[2], async () => {
