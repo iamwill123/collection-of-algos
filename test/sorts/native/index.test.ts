@@ -52,8 +52,7 @@ describe("Native JS sort", () => {
 
   test("cases[8]: " + cases[8], async () => {
     const obj = {
-      arr: unsorted().arr.alphaNumericWithFloats,
-      isSorting: () => false,
+      arr: unsorted().arr.alphaNumericWithFloats
     };
     const { arr: arrOfNums } = await nativeSort(obj);
     expect(arrOfNums).toEqual(sorted().arr.alphaNumericWithFloats);

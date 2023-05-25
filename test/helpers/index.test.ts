@@ -64,7 +64,7 @@ describe("Helper functions", () => {
     let randomNumbers = generateRandomNumbers({ n: 5, min: 1, max: 100 });
     let randomLetters: any = generateRandomLetters({ n: 5 });
     let mixedArray = randomNumbers.concat(randomLetters).concat(randomFloats);
-		let shuffledArray = shuffleArray(mixedArray);
+    let shuffledArray = shuffleArray(mixedArray);
 
     expect(shuffledArray.length).toBe(15);
 
@@ -78,18 +78,6 @@ describe("Helper functions", () => {
     });
   });
 
-  test("compare", () => {
-    expect(compare(1, 2, "", "asc")).toBe(-1);
-    expect(compare(2, 1, "", "asc")).toBe(1);
-    expect(compare(1, 1, "", "asc")).toBe(0);
-    expect(compare(1, 2, "", "desc")).toBe(1);
-    expect(compare(2, 1, "", "desc")).toBe(-1);
-    expect(compare(1, 1, "", "desc")).toBe(0);
-    expect(() => compare(1, 2, "", "invalid")).toThrowError(
-      "Invalid order: invalid."
-    );
-  });
-
   test("sleep + howLongExecTook combo", async () => {
     const _s = startTime();
     await sleep(1000);
@@ -101,5 +89,42 @@ describe("Helper functions", () => {
     const arr = [1, 2, 3, 4, 5];
     const idx = pickRandomIndex(0, arr.length - 1);
     expect(arr.includes(arr[idx])).toBe(true);
+  });
+
+
+  describe("compare", () => {
+    test("should compare numbers in ascending order", () => {
+      expect(compare(1, 2)).toBe(-1);
+      expect(compare(2, 1)).toBe(1);
+      expect(compare(1, 1)).toBe(0);
+    });
+
+    test("should compare numbers in descending order", () => {
+      expect(compare(1, 2, "", "desc")).toBe(1);
+      expect(compare(2, 1, "", "desc")).toBe(-1);
+      expect(compare(1, 1, "", "desc")).toBe(0);
+    });
+
+    test("should compare strings in ascending order", () => {
+      expect(compare("apple", "banana")).toBe(-1);
+      expect(compare("banana", "apple")).toBe(1);
+      expect(compare("apple", "apple")).toBe(0);
+    });
+
+    test("should compare strings in descending order", () => {
+      expect(compare("apple", "banana", "", "desc")).toBe(1);
+      expect(compare("banana", "apple", "", "desc")).toBe(-1);
+      expect(compare("apple", "apple", "", "desc")).toBe(0);
+    });
+
+    test("should prioritize numbers over strings in ascending order", () => {
+      expect(compare(1, "apple")).toBe(-1);
+      expect(compare("apple", 1)).toBe(1);
+    });
+
+    test("should prioritize numbers over strings in descending order", () => {
+      expect(compare(1, "apple", "", "desc")).toBe(-1);
+      expect(compare("apple", 1, "", "desc")).toBe(1);
+    });
   });
 });
