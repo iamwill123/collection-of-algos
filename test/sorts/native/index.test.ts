@@ -50,18 +50,6 @@ describe("Native JS sort", () => {
     expect(arrOfObjs).toEqual(sorted({ key, order }).arr.objects);
   });
 
-  test("cases[4]: " + cases[4], async () => {
-    let key = "height",
-      order = "desc";
-    const obj = {
-      arr: unsorted({ key }).arr.objects,
-      key,
-      order,
-    };
-    const { arr: arrOfObjs } = await nativeSort(obj);
-    expect(arrOfObjs).toEqual(sorted({ key, order }).arr.objects);
-  });
-
   test("cases[8]: " + cases[8], async () => {
     const obj = {
       arr: unsorted().arr.alphaNumericWithFloats,
@@ -79,5 +67,28 @@ describe("Native JS sort", () => {
     };
     const { arr: arrOfNums } = await nativeSort(obj);
     expect(arrOfNums).toEqual(sorted({ order }).arr.alphaNumericWithFloats);
+  });
+
+  test("cases[10]: " + cases[10], async () => {
+    const obj = {
+      arr: unsorted().arr.alphaNumericWithFloatsObjects,
+      key: "age",
+    };
+    const { arr: arrOfObjs } = await nativeSort(obj);
+    expect(arrOfObjs).toEqual(sorted({}).arr.alphaNumericWithFloatsObjects);
+  });
+
+  test("cases[11]: " + cases[11], async () => {
+    let key = "height",
+      order = "desc";
+    const obj = {
+      arr: unsorted({ key }).arr.alphaNumericWithFloatsObjects,
+      key,
+      order,
+    };
+    const { arr: arrOfObjs } = await nativeSort(obj);
+    expect(arrOfObjs).toEqual(
+      sorted({ key, order }).arr.alphaNumericWithFloatsObjects
+    );
   });
 });

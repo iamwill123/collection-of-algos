@@ -30,7 +30,7 @@ const testData = {
           { name: "Ariana", [key]: -9 },
           { name: "Will", [key]: 9 },
         ],
-        objectWithAlphaNumericWithFloats: [
+        alphaNumericWithFloatsObjects: [
           { name: "John", [key]: "m" },
           { name: "Mike", [key]: 32 },
           { name: "Chris", [key]: 34.22720107976321 },
@@ -100,22 +100,22 @@ const testData = {
               { name: "Ariana", [key]: -9 },
               { name: "Chris", [key]: -11 },
             ],
-        objectWithAlphaNumericWithFloats: isAsc(order)
+        alphaNumericWithFloatsObjects: isAsc(order)
           ? [
-              { name: "John", [key]: "m" },
-              { name: "Nick", [key]: "p" },
               { name: "Ariana", [key]: -9 },
               { name: "Mike", [key]: 32 },
               { name: "Chris", [key]: 34.22720107976321 },
               { name: "Will", [key]: 56.77438554068888 },
+              { name: "John", [key]: "m" },
+              { name: "Nick", [key]: "p" },
             ]
           : [
-              { name: "Nick", [key]: "p" },
-              { name: "John", [key]: "m" },
               { name: "Will", [key]: 56.77438554068888 },
               { name: "Chris", [key]: 34.22720107976321 },
               { name: "Mike", [key]: 32 },
               { name: "Ariana", [key]: -9 },
+              { name: "Nick", [key]: "p" },
+              { name: "John", [key]: "m" },
             ],
       },
     };
