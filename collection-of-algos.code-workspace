@@ -1,0 +1,11 @@
+{
+  "folders": [
+	{
+		"name": "collection-of-algos",
+		"path": "."
+	}
+],
+  "settings": {
+    "editor.formatOnSave": true
+  }
+}
