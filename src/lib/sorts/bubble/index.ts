@@ -16,15 +16,15 @@ import {
   isAnObj,
   isAsc,
   startTime,
-} from "../../helpers";
-import { SortInput, SortOutput } from "../../../types/sorts";
+} from '../../helpers';
+import { SortInput, SortOutput } from '../../../types/sorts';
 
 async function bubble(input: SortInput): Promise<SortOutput> {
   const _s = startTime();
   const {
     arr,
-    order = "asc",
-    key = "",
+    order = 'asc',
+    key = '',
     callback = () => {},
     isSorting = () => true,
   } = input;
@@ -36,7 +36,7 @@ async function bubble(input: SortInput): Promise<SortOutput> {
     return defaultProp;
   }
 
-  if (isAnObj(0, arr) && !key) throw new Error("key is required");
+  if (isAnObj(0, arr) && !key) throw new Error('key is required');
   for (let i = 0; i < n; i++) {
     for (let j = 0; j < n - i - 1; j++) {
       if (!isSorting()) {

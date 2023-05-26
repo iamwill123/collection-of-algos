@@ -1,0 +1,9 @@
+node_modules/
+build/
+dist/
+*.log
+docs-dist/
+coverage/
+.parcel-cache/
+.github/
+.vscode/

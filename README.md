@@ -10,7 +10,7 @@ It's also a library that can be used in your projects. It contains algos that ar
 
 First install the package (on npm as well [here](https://www.npmjs.com/package/collection-of-algos))
 
-``` bash
+```bash
 # using npm
 npm install collection-of-algos
 
@@ -22,23 +22,23 @@ Import the functions you want in your TypeScript or JavaScript project, see the 
 
 **Note:** Moving forward, the design on the functions will all be async (WIP), so you can use them with async/await or promise chains. Currently only bubbleSort is async.
 
-``` javascript
-import { bubbleSort, nativeSort } from 'collection-of-algos'
+```javascript
+import { bubbleSort, nativeSort } from 'collection-of-algos';
 
-let exampleArr = [5, 3, 1, 4, 2]
+let exampleArr = [5, 3, 1, 4, 2];
 // create shallow copy of the array
-const unsortedArr = [...exampleArr]
-const obj1 = { arr: unsortedArr }
+const unsortedArr = [...exampleArr];
+const obj1 = { arr: unsortedArr };
 
 // using a promise chain
 bubbleSort(obj1).then(({ arr }) => {
-  console.log(arr) // [1, 2, 3, 4, 5]
+  console.log(arr); // [1, 2, 3, 4, 5]
 });
 
 // or using async/await
-const { arr: arrOfNums } =  await bubbleSort(obj1)
+const { arr: arrOfNums } = await bubbleSort(obj1);
 
-console.log(arrOfNums) // [1, 2, 3, 4, 5]
+console.log(arrOfNums); // [1, 2, 3, 4, 5]
 
 const obj2 = {
   arr: [
@@ -48,24 +48,23 @@ const obj2 = {
     { name: 'Nick', age: 19 },
   ],
   key: 'age',
-}
-const { arr: arrOfObjs } = await nativeSort(obj2)
+};
+const { arr: arrOfObjs } = await nativeSort(obj2);
 
-console.log(arrOfObjs)
+console.log(arrOfObjs);
 // [
 //   { name: 'Chris', age: 11 },
 //   { name: 'Nick', age: 19 },
 //   { name: 'John', age: 23 },
 //   { name: 'Mike', age: 32 },
 // ]
-
 ```
 
 ## Work with this repo locally
 
 In your terminal
 
-``` bash
+```bash
 # install dependencies
 yarn
 
@@ -73,9 +72,9 @@ yarn
 yarn dev
 ```
 
-Using Docker (*WIP* parcel watch is not working)
+Using Docker (_WIP_ parcel watch is not working)
 
-``` bash
+```bash
 # build the docker image
 docker-compose build
 
@@ -88,7 +87,7 @@ docker-compose down
 
 ## Running unit tests
 
-``` bash
+```bash
 # run all tests
 yarn test
 

@@ -1,47 +1,47 @@
-import { isAsc } from "../../src/lib/helpers";
+import { isAsc } from '../../src/lib/helpers';
 
 const testData = {
-  unsorted: ({ key = "age" } = {}) => {
+  unsorted: ({ key = 'age' } = {}) => {
     return {
       arr: {
         numbers: [5, 3, -9, 1, 4, 2, -1],
         alphaNumericWithFloats: [
-          "m",
+          'm',
           36,
           43,
           68,
-          "e",
+          'e',
           34.22720107976321,
           99.7530453945129,
           86.88285233555781,
           24,
-          "p",
-          "v",
+          'p',
+          'v',
           75.47630878656577,
           47,
           56.77438554068888,
-          "h",
+          'h',
         ],
         objects: [
-          { name: "John", [key]: 23 },
-          { name: "Mike", [key]: 32 },
-          { name: "Chris", [key]: -11 },
-          { name: "Nick", [key]: 19 },
-          { name: "Ariana", [key]: -9 },
-          { name: "Will", [key]: 9 },
+          { name: 'John', [key]: 23 },
+          { name: 'Mike', [key]: 32 },
+          { name: 'Chris', [key]: -11 },
+          { name: 'Nick', [key]: 19 },
+          { name: 'Ariana', [key]: -9 },
+          { name: 'Will', [key]: 9 },
         ],
         alphaNumericWithFloatsObjects: [
-          { name: "John", [key]: "m" },
-          { name: "Mike", [key]: 32 },
-          { name: "Chris", [key]: 34.22720107976321 },
-          { name: "Nick", [key]: "p" },
-          { name: "Ariana", [key]: -9 },
-          { name: "Will", [key]: 56.77438554068888 },
+          { name: 'John', [key]: 'm' },
+          { name: 'Mike', [key]: 32 },
+          { name: 'Chris', [key]: 34.22720107976321 },
+          { name: 'Nick', [key]: 'p' },
+          { name: 'Ariana', [key]: -9 },
+          { name: 'Will', [key]: 56.77438554068888 },
         ],
       },
     };
   },
-  sorted: ({ key = "age", order = "asc" } = {}) => {
+  sorted: ({ key = 'age', order = 'asc' } = {}) => {
     return {
       arr: {
         numbers: isAsc(order)
@@ -59,11 +59,11 @@ const testData = {
               75.47630878656577,
               86.88285233555781,
               99.7530453945129,
-              "e",
-              "h",
-              "m",
-              "p",
-              "v",
+              'e',
+              'h',
+              'm',
+              'p',
+              'v',
             ]
           : [
               99.7530453945129,
@@ -76,46 +76,46 @@ const testData = {
               36,
               34.22720107976321,
               24,
-              "v",
-              "p",
-              "m",
-              "h",
-              "e",
+              'v',
+              'p',
+              'm',
+              'h',
+              'e',
             ],
 
         objects: isAsc(order)
           ? [
-              { name: "Chris", [key]: -11 },
-              { name: "Ariana", [key]: -9 },
-              { name: "Will", [key]: 9 },
-              { name: "Nick", [key]: 19 },
-              { name: "John", [key]: 23 },
-              { name: "Mike", [key]: 32 },
+              { name: 'Chris', [key]: -11 },
+              { name: 'Ariana', [key]: -9 },
+              { name: 'Will', [key]: 9 },
+              { name: 'Nick', [key]: 19 },
+              { name: 'John', [key]: 23 },
+              { name: 'Mike', [key]: 32 },
             ]
           : [
-              { name: "Mike", [key]: 32 },
-              { name: "John", [key]: 23 },
-              { name: "Nick", [key]: 19 },
-              { name: "Will", [key]: 9 },
-              { name: "Ariana", [key]: -9 },
-              { name: "Chris", [key]: -11 },
+              { name: 'Mike', [key]: 32 },
+              { name: 'John', [key]: 23 },
+              { name: 'Nick', [key]: 19 },
+              { name: 'Will', [key]: 9 },
+              { name: 'Ariana', [key]: -9 },
+              { name: 'Chris', [key]: -11 },
             ],
         alphaNumericWithFloatsObjects: isAsc(order)
           ? [
-              { name: "Ariana", [key]: -9 },
-              { name: "Mike", [key]: 32 },
-              { name: "Chris", [key]: 34.22720107976321 },
-              { name: "Will", [key]: 56.77438554068888 },
-              { name: "John", [key]: "m" },
-              { name: "Nick", [key]: "p" },
+              { name: 'Ariana', [key]: -9 },
+              { name: 'Mike', [key]: 32 },
+              { name: 'Chris', [key]: 34.22720107976321 },
+              { name: 'Will', [key]: 56.77438554068888 },
+              { name: 'John', [key]: 'm' },
+              { name: 'Nick', [key]: 'p' },
             ]
           : [
-              { name: "Will", [key]: 56.77438554068888 },
-              { name: "Chris", [key]: 34.22720107976321 },
-              { name: "Mike", [key]: 32 },
-              { name: "Ariana", [key]: -9 },
-              { name: "Nick", [key]: "p" },
-              { name: "John", [key]: "m" },
+              { name: 'Will', [key]: 56.77438554068888 },
+              { name: 'Chris', [key]: 34.22720107976321 },
+              { name: 'Mike', [key]: 32 },
+              { name: 'Ariana', [key]: -9 },
+              { name: 'Nick', [key]: 'p' },
+              { name: 'John', [key]: 'm' },
             ],
       },
     };
