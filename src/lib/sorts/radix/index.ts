@@ -8,15 +8,15 @@ import {
   isAnObj,
   isAsc,
   startTime,
-} from "../../helpers";
-import { ArrayInput, SortInput, SortOutput } from "../../../types/sorts";
+} from '../../helpers';
+import { ArrayInput, SortInput, SortOutput } from '../../../types/sorts';
 
 async function radix(input: SortInput): Promise<SortOutput> {
   const _s = startTime();
   const {
     arr,
-    order = "asc",
-    key = "",
+    order = 'asc',
+    key = '',
     callback = () => {},
     isSorting = () => true,
   } = input;
@@ -27,7 +27,7 @@ async function radix(input: SortInput): Promise<SortOutput> {
     return { arr, key, order, n, execTime: 0, animate };
   }
 
-  if (isAnObj(0, arr) && !key) throw new Error("key is required");
+  if (isAnObj(0, arr) && !key) throw new Error('key is required');
 
   let maxLen = -Infinity;
   for (let i = 0; i < arr.length; i++) {
@@ -44,7 +44,7 @@ async function radix(input: SortInput): Promise<SortOutput> {
       tempArr[lastNum].push(arr[i]);
     }
     let finalArr: ArrayInput = [];
-    if (order === "asc") {
+    if (order === 'asc') {
       for (let i = 0; i < 10; i++) {
         finalArr = [...arr, ...tempArr[i]];
       }

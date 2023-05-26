@@ -1,24 +1,24 @@
 {
-	"compilerOptions": {
-		"lib": ["es6", "dom"],
-		"target": "es6",
-		"module": "esnext",
-		"moduleResolution": "node",
-		"strict": true,
-		"esModuleInterop": true,
-		"declaration": true,
-		"outDir": "./dist",
-		"baseUrl": ".",
-		// "paths": {
-		// 	"~*": ["src/*"]
-		// },
-		"sourceMap": true, // Add source map generation
-		"resolveJsonModule": true, // Allow importing JSON files
-		"declarationMap": true, // Generate declaration maps
-		"allowSyntheticDefaultImports": true, // Allow default imports from modules with no default export
-		"strictNullChecks": true, // Enforce null checks
-		"noImplicitAny": true // Enforce explicit types for all variables and function parameters
-	},
-	"include": ["src/**/*"],
-	"exclude": ["**/*.test.ts"] // Exclude test files
+  "compilerOptions": {
+    "lib": ["es6", "dom"],
+    "target": "es6",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "strict": true,
+    "esModuleInterop": true,
+    "declaration": true,
+    "outDir": "./dist",
+    "baseUrl": ".",
+    // "paths": {
+    // 	"~*": ["src/*"]
+    // },
+    "sourceMap": true, // Add source map generation
+    "resolveJsonModule": true, // Allow importing JSON files
+    "declarationMap": true, // Generate declaration maps
+    "allowSyntheticDefaultImports": true, // Allow default imports from modules with no default export
+    "strictNullChecks": true, // Enforce null checks
+    "noImplicitAny": true // Enforce explicit types for all variables and function parameters
+  },
+  "include": ["src/**/*"],
+  "exclude": ["**/*.test.ts"] // Exclude test files
 }

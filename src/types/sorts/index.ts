@@ -1,4 +1,4 @@
-type SortOrder = "asc" | "desc" | "ascending" | "descending" | string;
+type SortOrder = 'asc' | 'desc' | 'ascending' | 'descending' | string;
 type ArrayOfObjects = {
   [key: string | number]: number | string;
 }[];

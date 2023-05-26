@@ -6,18 +6,18 @@ import {
   SortOrder,
   ArrayOutput,
   GenerateRandomFloats,
-} from "../../types/sorts";
+} from '../../types/sorts';
 
 const startTime = () => Date.now();
 const endTime = () => Date.now();
 const howLongExecTook = (_: number, __: number) => __ - _;
-const isAsc = (order: SortOrder = "asc") => order === "asc";
-const isDesc = (order: SortOrder = "desc") => order === "desc";
+const isAsc = (order: SortOrder = 'asc') => order === 'asc';
+const isDesc = (order: SortOrder = 'desc') => order === 'desc';
 
 const isAnObj = (idx: number, arr: ArrayInput): boolean =>
-  typeof arr[idx] === "object" && arr[idx] !== null;
+  typeof arr[idx] === 'object' && arr[idx] !== null;
 const isNumber = (idx: number, arr: ArrayInput): boolean =>
-  typeof arr[idx] === "number";
+  typeof arr[idx] === 'number';
 
 // O(n) time complexity, O(1) space complexity
 const findMaxNumber = (arr: ArrayInput): number => Math.max(...arr);
@@ -35,7 +35,7 @@ const generateRandomNumbers = ({
 
 const generateRandomLetters = ({
   n = 0,
-  letters = "abcdefghijklmnopqrstuvwxyz",
+  letters = 'abcdefghijklmnopqrstuvwxyz',
 }: GenerateRandomLetters = {}): string[] => {
   return Array.from({ length: n }, () =>
     letters.charAt(Math.floor(Math.random() * letters.length))
@@ -70,19 +70,19 @@ const pickRandomIndex = (start: number, end: number) =>
 const compare = (
   a: NumberOrObject,
   b: NumberOrObject,
-  key: string = "",
-  order: string = "asc"
+  key: string = '',
+  order: string = 'asc'
 ): number => {
   if (key) {
     a = a[key];
     b = b[key];
   }
 
-  if (typeof a === "number" && typeof b === "number") {
-    return order === "asc" ? a - b : b - a;
-  } else if (typeof a === "string" && typeof b === "string") {
-    return order === "asc" ? a.localeCompare(b) : b.localeCompare(a);
-  } else if (typeof a === "number") {
+  if (typeof a === 'number' && typeof b === 'number') {
+    return order === 'asc' ? a - b : b - a;
+  } else if (typeof a === 'string' && typeof b === 'string') {
+    return order === 'asc' ? a.localeCompare(b) : b.localeCompare(a);
+  } else if (typeof a === 'number') {
     return -1; // numbers always come before letters
   } else {
     return 1; // letters always come after numbers
