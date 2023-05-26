@@ -50,5 +50,8 @@
   "bugs": {
     "url": "https://github.com/iamwill123/collection-of-algos/issues"
   },
-  "homepage": "https://github.com/iamwill123/collection-of-algos#readme"
+  "homepage": "https://github.com/iamwill123/collection-of-algos#readme",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  }
 }

@@ -27,3 +27,4 @@ debug.log
 .parcel-cache
 DEPLOYMENT.md
 documentation/
+.npmrc
