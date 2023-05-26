@@ -1,11 +1,16 @@
 {
-  "name": "collection-of-algos",
+  "name": "@iamwill123/collection-of-algos",
   "version": "1.0.30",
   "description": "A collection of mostly common algorithms, data structures with visualizations and explanations.",
   "author": {
     "name": "William Pei Yuan",
     "email": "williampeiyuan@gmail.com"
   },
+  "keywords": [
+    "javascript",
+    "algorithms",
+    "data structures"
+  ],
   "source": "src/index.ts",
   "main": "dist/index.js",
   "module": "dist/module.js",
@@ -52,6 +57,6 @@
   },
   "homepage": "https://github.com/iamwill123/collection-of-algos#readme",
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
+    "registry": "https://npm.pkg.github.com/iamwill123"
   }
 }
