@@ -23,7 +23,7 @@
     "watch": "parcel watch",
     "test": "jest",
     "test:coverage": "jest --coverage",
-    "deploy:github-pkg": "npm version patch && yarn build && npm publish",
+    "deploy:github-pkg": "npm version patch && yarn build && npm publish --access public",
     "prettier": "prettier --write .",
     "pre-commit": "yarn prettier && lint-staged"
   },
