@@ -8,23 +8,50 @@ It's also a library that can be used in your projects. It contains algos that ar
 
 ## To use this package in your project
 
-First install the package (on npm as well [here](https://www.npmjs.com/package/collection-of-algos))
+Using Github packages [here](https://github.com/iamwill123/collection-of-algos/pkgs/npm/collection-of-algos) (the choice for hosting this library)
+
+**Installation**
+Open your terminal or command prompt, navigate to your project directory and run the following command:
 
 ```bash
 # using npm
-npm install collection-of-algos
+npm install @iamwill123/collection-of-algos@latest
 
 # using yarn
-yarn add collection-of-algos
+yarn add @iamwill123/collection-of-algos@latest
 ```
 
-Import the functions you want in your TypeScript or JavaScript project, see the test cases for usage examples.
+This will install version `latest` version of the package `@iamwill123/collection-of-algos`.
 
-**Note:** Moving forward, the design on the functions will all be async (WIP), so you can use them with async/await or promise chains. Currently only bubbleSort is async.
+**Import**
+
+For CommonJS (Node.js):
 
 ```javascript
-import { bubbleSort, nativeSort } from 'collection-of-algos';
+const algos = require('@iamwill123/collection-of-algos');
+```
 
+For ES6 syntax:
+
+```javascript
+import algos from '@iamwill123/collection-of-algos';
+```
+
+**Usage**
+
+```javascript
+algos.nativeSort();
+```
+
+**Import specific functions**
+
+```javascript
+import { bubbleSort, nativeSort } from '@iamwill123/collection-of-algos';
+```
+
+**Usage**
+
+```javascript
 let exampleArr = [5, 3, 1, 4, 2];
 // create shallow copy of the array
 const unsortedArr = [...exampleArr];
@@ -60,6 +87,20 @@ console.log(arrOfObjs);
 // ]
 ```
 
+In this code, `bubbleSort` and `nativeSort` are specific functions imported from the `@iamwill123/collection-of-algos` package. `bubbleSort` is a sorting algorithm that's being applied to an array of numbers, while `nativeSort` is used to sort an array of objects by a specific key.
+
+Remember, before using `await`, you should ensure that your code is inside an `async` function. The `await` operator is used to wait for a Promise. It can only be used inside an `async` function.
+
+## Using from NPM [here](https://www.npmjs.com/package/collection-of-algos) (no longer supported)
+
+```bash
+# using npm
+npm install collection-of-algos
+
+# using yarn
+yarn add collection-of-algos
+```
+
 ## Work with this repo locally
 
 In your terminal
@@ -70,19 +111,6 @@ yarn
 
 # serve the app
 yarn dev
-```
-
-Using Docker (_WIP_ parcel watch is not working)
-
-```bash
-# build the docker image
-docker-compose build
-
-# serve the app
-docker-compose up
-
-# Stop & remove the container
-docker-compose down
 ```
 
 ## Running unit tests
@@ -103,8 +131,27 @@ yarn coverage
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/williampeiyuan/)
 
+## /docs-dist (The visualizer codebase)
+
+- Currently contains the build dist for the documentation folder which is currently hidden.
+- Once it's in a good place I will makde it public.
+
 ## Todos
 
 - [ ] Think about separating each algo into its own page
 - [ ] Add notes and drawings for each algo
 - [ ] Unit the helper functions
+- [ ] Docker support
+
+Using Docker (_WIP_ parcel watch is not working)
+
+```bash
+# build the docker image
+docker-compose build
+
+# serve the app
+docker-compose up
+
+# Stop & remove the container
+docker-compose down
+```
