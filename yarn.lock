@@ -1295,16 +1295,16 @@
     posthtml-render "^3.0.0"
     semver "^5.7.1"
 
-"@parcel/transformer-typescript-types@2.8.3":
-  version "2.8.3"
-  resolved "https://registry.yarnpkg.com/@parcel/transformer-typescript-types/-/transformer-typescript-types-2.8.3.tgz#55415a9b4f3bc859b675b502d23180e5e4f67719"
-  integrity sha512-zjsJsgecjw4X1nt5R7A61uWwzwCce0usKKPqnE5tQpYtF4FfK5X69r0l5JLovlyaT2uwoe+hvhu2AELA0kKRQA==
+"@parcel/transformer-typescript-types@2.9.0":
+  version "2.9.0"
+  resolved "https://registry.yarnpkg.com/@parcel/transformer-typescript-types/-/transformer-typescript-types-2.9.0.tgz#623e902f422657ebe26f11a6c8712075e9808848"
+  integrity sha512-K8ky+StQtjsQurFpee/nsCYTk8wStQ+CGxp59zmLp2p6056jNQBqadHJ0f0ckFQc3hiwVNL2ISxLDLC3j+e8yQ==
   dependencies:
-    "@parcel/diagnostic" "2.8.3"
-    "@parcel/plugin" "2.8.3"
+    "@parcel/diagnostic" "2.9.0"
+    "@parcel/plugin" "2.9.0"
     "@parcel/source-map" "^2.1.1"
-    "@parcel/ts-utils" "2.8.3"
-    "@parcel/utils" "2.8.3"
+    "@parcel/ts-utils" "2.9.0"
+    "@parcel/utils" "2.9.0"
     nullthrows "^1.1.1"
 
 "@parcel/transformer-webmanifest@2.8.3":
@@ -1317,10 +1317,10 @@
     "@parcel/plugin" "2.8.3"
     "@parcel/utils" "2.8.3"
 
-"@parcel/ts-utils@2.8.3":
-  version "2.8.3"
-  resolved "https://registry.yarnpkg.com/@parcel/ts-utils/-/ts-utils-2.8.3.tgz#f3590ca033c061779dc35ff3d14af2860ed106ac"
-  integrity sha512-4HMt9B9LF2pDFvSKGImho48tlCvCUl7ly1ZMXvQdmEq2i0yoS81tDsmxX3yly/RVUVeUCGAj1JRuuy1lw5zw1A==
+"@parcel/ts-utils@2.9.0":
+  version "2.9.0"
+  resolved "https://registry.yarnpkg.com/@parcel/ts-utils/-/ts-utils-2.9.0.tgz#72532efc6621b218a0582366426f6c6e5275c078"
+  integrity sha512-AuLs3n1CepIEWPowMt9aoyavv7s3Mw/w+uKotWDtamaMV4ERK8jYRwgwwT3R5miDjoXYxxBhD/RAGkuk4FSbTg==
   dependencies:
     nullthrows "^1.1.1"
 
@@ -1576,9 +1576,9 @@
     pretty-format "^29.0.0"
 
 "@types/node@*", "@types/node@^20.1.3":
-  version "20.2.3"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-20.2.3.tgz#b31eb300610c3835ac008d690de6f87e28f9b878"
-  integrity sha512-pg9d0yC4rVNWQzX8U7xb4olIOFuuVL9za3bzMT2pu2SU0SNEi66i2qrvhE2qt0HvkhuCaWJu7pLNOt/Pj8BIrw==
+  version "20.2.5"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-20.2.5.tgz#26d295f3570323b2837d322180dfbf1ba156fefb"
+  integrity sha512-JJulVEQXmiY9Px5axXHeYGLSjhkZEnD+MDPDGbCbIAbMslkKwmygtZFy1X6s/075Yo94sf8GuSlFfPzysQrWZQ==
 
 "@types/parse-json@^4.0.0":
   version "4.0.0"
