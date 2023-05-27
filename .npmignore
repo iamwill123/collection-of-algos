@@ -25,3 +25,4 @@ jest.config.js
 tsconfig.test.json
 tsconfig.json
 LICENSE
+.npmrc
