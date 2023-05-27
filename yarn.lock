@@ -1051,12 +1051,12 @@
     "@parcel/utils" "2.9.0"
     posthtml "^0.16.4"
 
-"@parcel/packager-ts@2.8.3":
-  version "2.8.3"
-  resolved "https://registry.yarnpkg.com/@parcel/packager-ts/-/packager-ts-2.8.3.tgz#49884b52e1a91c8265831fab4e8cf3a247fe69ca"
-  integrity sha512-8JooYHjKntHnQywLT7LAnfoGiAQ1fUu0N2DtuM0PxpgQqYJ4KE9TZS+SZq7hpe24cZkD0A4A+1kBlYAyvuanrg==
+"@parcel/packager-ts@2.9.0":
+  version "2.9.0"
+  resolved "https://registry.yarnpkg.com/@parcel/packager-ts/-/packager-ts-2.9.0.tgz#2e72c3b2d335dda5ec01fc2791f28af73ce7574c"
+  integrity sha512-vSgoZWgMa2UxPuRsqKMuTIbLNSsV77HuusmsWvJdg/okX6qC4DKW+ceAKReMcTeuo6RECvInNdCuqA6LurDCrA==
   dependencies:
-    "@parcel/plugin" "2.8.3"
+    "@parcel/plugin" "2.9.0"
 
 "@parcel/plugin@2.8.3":
   version "2.8.3"
@@ -1295,32 +1295,32 @@
     posthtml-render "^3.0.0"
     semver "^5.7.1"
 
-"@parcel/transformer-typescript-types@2.8.3":
-  version "2.8.3"
-  resolved "https://registry.yarnpkg.com/@parcel/transformer-typescript-types/-/transformer-typescript-types-2.8.3.tgz#55415a9b4f3bc859b675b502d23180e5e4f67719"
-  integrity sha512-zjsJsgecjw4X1nt5R7A61uWwzwCce0usKKPqnE5tQpYtF4FfK5X69r0l5JLovlyaT2uwoe+hvhu2AELA0kKRQA==
+"@parcel/transformer-typescript-types@2.9.0":
+  version "2.9.0"
+  resolved "https://registry.yarnpkg.com/@parcel/transformer-typescript-types/-/transformer-typescript-types-2.9.0.tgz#623e902f422657ebe26f11a6c8712075e9808848"
+  integrity sha512-K8ky+StQtjsQurFpee/nsCYTk8wStQ+CGxp59zmLp2p6056jNQBqadHJ0f0ckFQc3hiwVNL2ISxLDLC3j+e8yQ==
   dependencies:
-    "@parcel/diagnostic" "2.8.3"
-    "@parcel/plugin" "2.8.3"
+    "@parcel/diagnostic" "2.9.0"
+    "@parcel/plugin" "2.9.0"
     "@parcel/source-map" "^2.1.1"
-    "@parcel/ts-utils" "2.8.3"
-    "@parcel/utils" "2.8.3"
+    "@parcel/ts-utils" "2.9.0"
+    "@parcel/utils" "2.9.0"
     nullthrows "^1.1.1"
 
-"@parcel/transformer-webmanifest@2.8.3":
-  version "2.8.3"
-  resolved "https://registry.yarnpkg.com/@parcel/transformer-webmanifest/-/transformer-webmanifest-2.8.3.tgz#5858079bf5abaedcf42dc5e856248a596277dc71"
-  integrity sha512-v3NuQc1K1AMfD1+hvh/YYpxBEin52CvEX94MnjwYK6bDmJ35rNuttIs7T6DZxAOopRbGwoTchCShIbv15gTcvg==
+"@parcel/transformer-webmanifest@2.9.0":
+  version "2.9.0"
+  resolved "https://registry.yarnpkg.com/@parcel/transformer-webmanifest/-/transformer-webmanifest-2.9.0.tgz#34795e5ad9b25a4a7aca30cfcd3b539515e094f7"
+  integrity sha512-tOrT+QtalIW2JwgmWdDZitZ0PHp+tAnNUXTl7Dr2mlAHUnTfetrBZpaAahwrxfNWMMTWhUQlr7HxB6hQewQmIw==
   dependencies:
     "@mischnic/json-sourcemap" "^0.1.0"
-    "@parcel/diagnostic" "2.8.3"
-    "@parcel/plugin" "2.8.3"
-    "@parcel/utils" "2.8.3"
+    "@parcel/diagnostic" "2.9.0"
+    "@parcel/plugin" "2.9.0"
+    "@parcel/utils" "2.9.0"
 
-"@parcel/ts-utils@2.8.3":
-  version "2.8.3"
-  resolved "https://registry.yarnpkg.com/@parcel/ts-utils/-/ts-utils-2.8.3.tgz#f3590ca033c061779dc35ff3d14af2860ed106ac"
-  integrity sha512-4HMt9B9LF2pDFvSKGImho48tlCvCUl7ly1ZMXvQdmEq2i0yoS81tDsmxX3yly/RVUVeUCGAj1JRuuy1lw5zw1A==
+"@parcel/ts-utils@2.9.0":
+  version "2.9.0"
+  resolved "https://registry.yarnpkg.com/@parcel/ts-utils/-/ts-utils-2.9.0.tgz#72532efc6621b218a0582366426f6c6e5275c078"
+  integrity sha512-AuLs3n1CepIEWPowMt9aoyavv7s3Mw/w+uKotWDtamaMV4ERK8jYRwgwwT3R5miDjoXYxxBhD/RAGkuk4FSbTg==
   dependencies:
     nullthrows "^1.1.1"
 
@@ -1579,6 +1579,11 @@
   version "20.2.5"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-20.2.5.tgz#26d295f3570323b2837d322180dfbf1ba156fefb"
   integrity sha512-JJulVEQXmiY9Px5axXHeYGLSjhkZEnD+MDPDGbCbIAbMslkKwmygtZFy1X6s/075Yo94sf8GuSlFfPzysQrWZQ==
+
+"@types/parse-json@^4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/@types/parse-json/-/parse-json-4.0.0.tgz#2f8bb441434d163b35fb8ffdccd7138927ffb8c0"
+  integrity sha512-//oorEZjL6sbPcKUaCdIGlIUeH26mgzimjBB77G6XRgnDl/L5wOnpyBGRe/Mmf5CVW3PwEBE1NjiMZ/ssFh4wA==
 
 "@types/prettier@^2.1.5":
   version "2.7.2"
@@ -3147,7 +3152,7 @@ msgpackr-extract@^3.0.1, msgpackr-extract@^3.0.2:
     "@msgpackr-extract/msgpackr-extract-linux-x64" "3.0.2"
     "@msgpackr-extract/msgpackr-extract-win32-x64" "3.0.2"
 
-msgpackr@1.8.5:
+msgpackr@1.8.5, msgpackr@^1.5.4:
   version "1.8.5"
   resolved "https://registry.yarnpkg.com/msgpackr/-/msgpackr-1.8.5.tgz#8cadfb935357680648f33699d0e833c9179dbfeb"
   integrity sha512-mpPs3qqTug6ahbblkThoUY2DQdNXcm4IapwOS3Vm/87vmpzLVelvp9h3It1y9l1VPpiFLV11vfOXnmeEwiIXwg==
