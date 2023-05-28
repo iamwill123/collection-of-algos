@@ -1,5 +1,5 @@
 {
-  "name": "@iamwill123/collection-of-algos",
+  "name": "collection-of-algos",
   "version": "1.0.42",
   "description": "A collection of mostly common algorithms, data structures with visualizations and explanations.",
   "author": {
@@ -23,7 +23,7 @@
     "watch": "parcel watch",
     "test": "jest",
     "test:coverage": "jest --coverage",
-    "deploy:github-pkg": "npm version patch && yarn build && npm publish --access public",
+    "deploy": "npm version patch && yarn build && npm publish",
     "prettier": "prettier --write .",
     "pre-commit": "yarn prettier && lint-staged"
   },
@@ -55,8 +55,5 @@
   "bugs": {
     "url": "https://github.com/iamwill123/collection-of-algos/issues"
   },
-  "homepage": "https://github.com/iamwill123/collection-of-algos#readme",
-  "publishConfig": {
-    "@iamwill123:registry": "https://npm.pkg.github.com"
-  }
+  "homepage": "https://github.com/iamwill123/collection-of-algos#readme"
 }
