@@ -57,6 +57,6 @@
   },
   "homepage": "https://github.com/iamwill123/collection-of-algos#readme",
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com/iamwill123"
+    "@iamwill123:registry": "https://npm.pkg.github.com"
   }
 }
