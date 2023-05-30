@@ -29,6 +29,10 @@ async function merge_sort(input: SortInput): Promise<SortOutput> {
 
   if (isAnObj(0, arr) && !key) throw new Error('key is required');
 
+  if (n > Number.MAX_SAFE_INTEGER) {
+    throw new Error('n is too large!');
+  }
+
   const middle = Math.floor(n / 2); // get the middle item of the array rounded down
   const left = arr.slice(0, middle); // items on the left side
   const right = arr.slice(middle); // items on the right side
