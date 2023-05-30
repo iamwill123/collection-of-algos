@@ -1284,16 +1284,16 @@
     posthtml-render "^3.0.0"
     semver "^5.7.1"
 
-"@parcel/transformer-typescript-types@2.9.0":
-  version "2.9.0"
-  resolved "https://registry.yarnpkg.com/@parcel/transformer-typescript-types/-/transformer-typescript-types-2.9.0.tgz#623e902f422657ebe26f11a6c8712075e9808848"
-  integrity sha512-K8ky+StQtjsQurFpee/nsCYTk8wStQ+CGxp59zmLp2p6056jNQBqadHJ0f0ckFQc3hiwVNL2ISxLDLC3j+e8yQ==
+"@parcel/transformer-typescript-types@2.9.1":
+  version "2.9.1"
+  resolved "https://registry.yarnpkg.com/@parcel/transformer-typescript-types/-/transformer-typescript-types-2.9.1.tgz#6c86776d94240c168faa13d5dec3634cd4891dd2"
+  integrity sha512-pJ0rYmaSqsSB8rPDwNa3k5nAjzcCGjfEcJjcHo/B7Nx+hh/zRZQ9r7SH8Ez/q+FxmsMV+bfM7rTAAwlHmWNXJw==
   dependencies:
-    "@parcel/diagnostic" "2.9.0"
-    "@parcel/plugin" "2.9.0"
+    "@parcel/diagnostic" "2.9.1"
+    "@parcel/plugin" "2.9.1"
     "@parcel/source-map" "^2.1.1"
-    "@parcel/ts-utils" "2.9.0"
-    "@parcel/utils" "2.9.0"
+    "@parcel/ts-utils" "2.9.1"
+    "@parcel/utils" "2.9.1"
     nullthrows "^1.1.1"
 
 "@parcel/transformer-webmanifest@2.9.1":
@@ -1306,10 +1306,10 @@
     "@parcel/plugin" "2.9.1"
     "@parcel/utils" "2.9.1"
 
-"@parcel/ts-utils@2.9.0":
-  version "2.9.0"
-  resolved "https://registry.yarnpkg.com/@parcel/ts-utils/-/ts-utils-2.9.0.tgz#72532efc6621b218a0582366426f6c6e5275c078"
-  integrity sha512-AuLs3n1CepIEWPowMt9aoyavv7s3Mw/w+uKotWDtamaMV4ERK8jYRwgwwT3R5miDjoXYxxBhD/RAGkuk4FSbTg==
+"@parcel/ts-utils@2.9.1":
+  version "2.9.1"
+  resolved "https://registry.yarnpkg.com/@parcel/ts-utils/-/ts-utils-2.9.1.tgz#9f3a9317af8545817f0c0450406a128d7dad3570"
+  integrity sha512-Z2xI0xyQZi9fsCOa0NiOpzj4KNU1PotvlYkXzg3jzw0gw2JhTYoCl59s1N4EUvUd4IOaQc2MmkUkSqAVoKzZkg==
   dependencies:
     nullthrows "^1.1.1"
 
