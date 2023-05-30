@@ -1,4 +1,4 @@
-import { TypeCache } from 'src/types/recursive';
+import { TypeCache } from 'src/types/recursion';
 
 // Memoization is a technique for improving the performance of recursive functions.
 let cache: TypeCache = {
