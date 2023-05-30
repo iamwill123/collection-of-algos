@@ -1296,15 +1296,15 @@
     "@parcel/utils" "2.9.0"
     nullthrows "^1.1.1"
 
-"@parcel/transformer-webmanifest@2.9.0":
-  version "2.9.0"
-  resolved "https://registry.yarnpkg.com/@parcel/transformer-webmanifest/-/transformer-webmanifest-2.9.0.tgz#34795e5ad9b25a4a7aca30cfcd3b539515e094f7"
-  integrity sha512-tOrT+QtalIW2JwgmWdDZitZ0PHp+tAnNUXTl7Dr2mlAHUnTfetrBZpaAahwrxfNWMMTWhUQlr7HxB6hQewQmIw==
+"@parcel/transformer-webmanifest@2.9.1":
+  version "2.9.1"
+  resolved "https://registry.yarnpkg.com/@parcel/transformer-webmanifest/-/transformer-webmanifest-2.9.1.tgz#23f03bdda7760d1f031d1e556e869b82d792f15c"
+  integrity sha512-mnNfDJQBaqkc8S0I9IOHEM0dKRMXNMXcl4vUMCUrcAiNYGcSLaPrSfZqvyuUgc5Lx6T2FCeQ/KzamWBdH3e0PA==
   dependencies:
     "@mischnic/json-sourcemap" "^0.1.0"
-    "@parcel/diagnostic" "2.9.0"
-    "@parcel/plugin" "2.9.0"
-    "@parcel/utils" "2.9.0"
+    "@parcel/diagnostic" "2.9.1"
+    "@parcel/plugin" "2.9.1"
+    "@parcel/utils" "2.9.1"
 
 "@parcel/ts-utils@2.9.0":
   version "2.9.0"
