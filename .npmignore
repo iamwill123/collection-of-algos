@@ -26,3 +26,6 @@ tsconfig.test.json
 tsconfig.json
 LICENSE
 .npmrc
+*.code-workspace
+.prettierrc
+.prettierignore
