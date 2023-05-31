@@ -7,6 +7,9 @@ import mergeSort from './lib/sorts/merge';
 import quickSort from './lib/sorts/quick';
 import heapSort from './lib/sorts/heap';
 import countSort from './lib/sorts/count';
+import nCk from './lib/recursion/combinations/nCk';
+import factorial from './lib/recursion/factorial';
+import fibonacci from './lib/recursion/fibonacci';
 
 export {
   generateRandomNumbers,
@@ -18,4 +21,7 @@ export {
   quickSort,
   heapSort,
   countSort,
+  nCk,
+  fibonacci,
+  factorial
 };
