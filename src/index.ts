@@ -10,6 +10,7 @@ import countSort from './lib/sorts/count';
 import nCk from './lib/recursion/combinations/nCk';
 import factorial from './lib/recursion/factorial';
 import fibonacci from './lib/recursion/fibonacci';
+import towerOfHanoi from './lib/recursion/towerOfHanoi';
 
 export {
   generateRandomNumbers,
@@ -23,5 +24,6 @@ export {
   countSort,
   nCk,
   fibonacci,
-  factorial
+  factorial,
+  towerOfHanoi
 };
