@@ -1,7 +1,6 @@
-// N Choose K Combinations of a Set of Size N (nCk)
-// #backtracking #recursion #combinations #n-choose-k #nCk #n-choose-k-combinations
+//
 
-// Given a set of size n, generate and print all possible combinations of k elements in the set.
+
 type CombinationsResult = string[];
 
 type HelperProps = {
@@ -31,7 +30,9 @@ function helper(props: HelperProps): void {
   }
 
   // recursive case
+  // left side of the tree
   helper({ n: n - 1, slate: slate + '0', results });
+  // right side of the tree
   helper({ n: n - 1, slate: slate + '1', results });
 }
 
