@@ -23,7 +23,7 @@ const find_all_combinations = (n: number, k: any): CombinationsResult => {
   const props = { nums, target: k, i: 0, slate: [], results };
   helper(props);
   return results;
-}
+};
 
 function helper(props: HelperProps): void {
   const { nums, target, i, slate, results } = props;
@@ -31,7 +31,7 @@ function helper(props: HelperProps): void {
   if (slate.length === target) {
     // make a copy of the slate
     results.push([...slate]);
-    return
+    return;
   }
 
   // base case
