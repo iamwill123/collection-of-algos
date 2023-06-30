@@ -6,6 +6,9 @@
     }
   ],
   "settings": {
-    "editor.formatOnSave": true
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true,
+    "editor.formatOnSaveMode": "modifications",
+    "vs-code-prettier-eslint.prettierLast": false,
   }
 }
