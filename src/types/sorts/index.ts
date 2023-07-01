@@ -19,6 +19,7 @@ type SortOutput = {
   execTime?: number; // the execution time in milliseconds
   animate?: boolean; // if the sort is animated
 };
+
 type SortInput = {
   arr: ArrayInput;
   order?: SortOrder;
@@ -28,6 +29,13 @@ type SortInput = {
     b: NumberOrObject
   ) => Promise<void> | Promise<any>;
   isSorting?: () => boolean;
+};
+
+type MergeTwoSortsInput = {
+  first: ArrayInput;
+  second?: ArrayInput;
+  order?: SortOrder;
+  key?: SortByKey;
 };
 
 type GenerateRandomNumbers =
@@ -65,4 +73,5 @@ export {
   GenerateRandomNumbers,
   GenerateRandomLetters,
   GenerateRandomFloats,
+  MergeTwoSortsInput,
 };

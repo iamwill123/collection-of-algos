@@ -11,7 +11,8 @@ import nCk from './lib/recursion/combinations/nCk';
 import factorial from './lib/recursion/factorial';
 import fibonacci from './lib/recursion/fibonacci';
 import towerOfHanoi from './lib/recursion/towerOfHanoi';
-import generateAllBinaryStringsOfLenN  from './lib/recursion/combinations/generateAllBinaryStringsOfLenN';
+import generateAllBinaryStringsOfLenN from './lib/recursion/combinations/generateAllBinaryStringsOfLenN';
+import mergeTwoSortedArrIntoOne from './lib/sorts/mergeTwoSorts';
 
 export {
   generateRandomNumbers,
@@ -27,5 +28,6 @@ export {
   fibonacci,
   factorial,
   towerOfHanoi,
-  generateAllBinaryStringsOfLenN
+  generateAllBinaryStringsOfLenN,
+  mergeTwoSortedArrIntoOne,
 };
