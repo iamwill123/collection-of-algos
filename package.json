@@ -1,6 +1,6 @@
 {
   "name": "collection-of-algos",
-  "version": "1.0.52",
+  "version": "1.0.55",
   "description": "A collection of mostly common algorithms, data structures with visualizations and explanations.",
   "author": {
     "name": "William Pei Yuan",
@@ -23,7 +23,7 @@
     "watch": "parcel watch",
     "test": "jest",
     "test:coverage": "jest --coverage",
-    "deploy": "npm version patch && yarn build && npm publish",
+    "publish": "npm version patch && npm publish",
     "prettier": "prettier --write .",
     "pre-commit": "yarn prettier && lint-staged"
   },
