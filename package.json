@@ -23,7 +23,7 @@
     "watch": "parcel watch",
     "test": "jest",
     "test:coverage": "jest --coverage",
-    "publish": "npm version patch && npm publish",
+    "publish": "yarn version && npm publish",
     "prettier": "prettier --write .",
     "pre-commit": "yarn prettier && lint-staged"
   },
