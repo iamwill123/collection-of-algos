@@ -5,14 +5,24 @@ import { testData } from '../test-data';
 describe('mergeTwoSorts sort', () => {
   const { unsorted, sorted } = testData;
 
-  test('cases[0]: ' + cases[0], () => {
-    const obj = { first: [5], second: [1] };
-    const { arr: arrOfNums } = mergeTwoSorts(obj);
-    expect(arrOfNums).toEqual([1, 5]);
-
+  test('cases[0]: given empty first array, it returns an empty []', () => {
     const obj1 = { first: [] };
     const { arr: arrOfNums1 } = mergeTwoSorts(obj1);
     expect(arrOfNums1).toEqual([]);
+  });
+
+  test('cases[1]: given a ASC sorted first and second array, it returns an ASC ordered merged list', () => {
+    const obj = { first: [2, 3, 5], second: [1, 4, 6] };
+    const { arr: arrOfNums } = mergeTwoSorts(obj);
+    console.log('arrOfNums', arrOfNums);
+    expect(arrOfNums).toEqual([1, 2, 3, 4, 5, 6]);
+  });
+
+  test('cases[2]: given a DESC sorted first and seconds array, it returns an DESC ordered merged list', () => {
+    const obj = { first: [5, 3, 2], second: [6, 4, 1], order: 'desc' };
+    const { arr: arrOfNums } = mergeTwoSorts(obj);
+    console.log('arrOfNums', arrOfNums);
+    expect(arrOfNums).toEqual([6, 5, 4, 3, 2, 1]);
   });
 
   // test('cases[1]: ' + cases[1], () => {
