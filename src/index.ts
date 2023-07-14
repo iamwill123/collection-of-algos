@@ -13,6 +13,7 @@ import fibonacci from './lib/recursion/fibonacci';
 import towerOfHanoi from './lib/recursion/towerOfHanoi';
 import generateAllBinaryStringsOfLenN from './lib/recursion/combinations/generateAllBinaryStringsOfLenN';
 import mergeTwoSortedArrIntoOne from './lib/sorts/mergeTwoSorts';
+import isPalindrome from './lib/iteration/isPalindrome';
 
 export {
   generateRandomNumbers,
@@ -30,4 +31,5 @@ export {
   towerOfHanoi,
   generateAllBinaryStringsOfLenN,
   mergeTwoSortedArrIntoOne,
+  isPalindrome,
 };

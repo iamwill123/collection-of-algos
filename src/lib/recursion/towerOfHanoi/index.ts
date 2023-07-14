@@ -8,7 +8,6 @@
 // Sample Input: 3
 // Sample Output: [[1,3], [1,2], [3,2], [1,3], [2,1], [2,3], [1,3]]
 
-
 const tower_of_hanoi = (n: number) => {
   // Write your code here.
   let result: number[][] = [];
