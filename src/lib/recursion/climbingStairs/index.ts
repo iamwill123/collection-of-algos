@@ -38,6 +38,12 @@ type ObjectType = {
 
 let cache: ObjectType = {};
 
+/**
+ * @function
+ * @name climbStairs
+ * @param {number} n
+ * @returns {number}
+ */
 const climbStairs = (n: number): number => {
   if (n <= 3) return n;
   if (!cache[n]) {

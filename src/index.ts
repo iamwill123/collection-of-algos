@@ -14,6 +14,7 @@ import towerOfHanoi from './lib/recursion/towerOfHanoi';
 import generateAllBinaryStringsOfLenN from './lib/recursion/combinations/generateAllBinaryStringsOfLenN';
 import mergeTwoSortedArrIntoOne from './lib/sorts/mergeTwoSorts';
 import isPalindrome from './lib/iteration/isPalindrome';
+import climbStairs from './lib/recursion/climbingStairs';
 
 export {
   generateRandomNumbers,
@@ -32,4 +33,5 @@ export {
   generateAllBinaryStringsOfLenN,
   mergeTwoSortedArrIntoOne,
   isPalindrome,
+  climbStairs,
 };
