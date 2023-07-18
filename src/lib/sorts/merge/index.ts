@@ -60,7 +60,7 @@ function merge(
   left: ArrayInput,
   right: ArrayInput,
   order: string,
-  key: string
+  key: string,
 ) {
   const merged: ArrayInput[] = [];
   let indexLeft: number = 0;

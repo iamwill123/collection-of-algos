@@ -1,6 +1,5 @@
 //
 
-
 type CombinationsResult = string[];
 
 type HelperProps = {
@@ -10,7 +9,7 @@ type HelperProps = {
 };
 
 const generate_all_binary_strings_of_len_n = (
-  n: number
+  n: number,
 ): CombinationsResult => {
   let results: CombinationsResult = [];
   let startString = '';

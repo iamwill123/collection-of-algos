@@ -30,7 +30,7 @@ const generateRandomNumbers = ({
   max = 0,
 }: GenerateRandomNumbers = {}): number[] =>
   Array.from({ length: n }, () =>
-    Math.floor(Math.random() * (max - min + 1) + min)
+    Math.floor(Math.random() * (max - min + 1) + min),
   );
 
 const generateRandomLetters = ({
@@ -38,7 +38,7 @@ const generateRandomLetters = ({
   letters = 'abcdefghijklmnopqrstuvwxyz',
 }: GenerateRandomLetters = {}): string[] => {
   return Array.from({ length: n }, () =>
-    letters.charAt(Math.floor(Math.random() * letters.length))
+    letters.charAt(Math.floor(Math.random() * letters.length)),
   );
 };
 
@@ -71,7 +71,7 @@ const compare = (
   a: NumberOrObject,
   b: NumberOrObject,
   key: string = '',
-  order: string = 'asc'
+  order: string = 'asc',
 ): number => {
   if (key) {
     a = a[key];

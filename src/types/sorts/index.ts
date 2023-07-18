@@ -26,7 +26,7 @@ type SortInput = {
   key?: SortByKey;
   callback?: (
     a: NumberOrObject,
-    b: NumberOrObject
+    b: NumberOrObject,
   ) => Promise<void> | Promise<any>;
   isSorting?: () => boolean;
 };

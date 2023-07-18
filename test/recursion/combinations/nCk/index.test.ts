@@ -47,6 +47,6 @@ describe('find_all_combinations', () => {
     ({ n, k, expected }) => {
       const actual = find_all_combinations(n, k);
       expect(actual).toEqual(expected);
-    }
+    },
   );
 });

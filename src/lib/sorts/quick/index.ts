@@ -25,7 +25,7 @@ type HelperInput = {
 
 async function quick_sort(
   input: SortInput,
-  partitionType: string = 'lomuto'
+  partitionType: string = 'lomuto',
 ): Promise<SortOutput> {
   const _s = startTime();
   const {

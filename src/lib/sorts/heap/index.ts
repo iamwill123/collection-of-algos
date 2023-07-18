@@ -60,7 +60,7 @@ function heapify(
   length: number,
   i: number,
   key: string,
-  order: string
+  order: string,
 ): Promise<void> {
   return new Promise((resolve) => {
     let largest = i;

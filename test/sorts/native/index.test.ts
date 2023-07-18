@@ -87,7 +87,7 @@ describe('Native JS sort', () => {
     };
     const { arr: arrOfObjs } = await nativeSort(obj);
     expect(arrOfObjs).toEqual(
-      sorted({ key, order }).arr.alphaNumericWithFloatsObjects
+      sorted({ key, order }).arr.alphaNumericWithFloatsObjects,
     );
   });
 });
