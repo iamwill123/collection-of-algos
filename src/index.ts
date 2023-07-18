@@ -15,6 +15,8 @@ import generateAllBinaryStringsOfLenN from './lib/recursion/combinations/generat
 import mergeTwoSortedArrIntoOne from './lib/sorts/mergeTwoSorts';
 import isPalindrome from './lib/iteration/isPalindrome';
 import climbStairs from './lib/recursion/climbingStairs';
+import uniqueEmails from './lib/iteration/uniqueEmails';
+import licenseKeyFormatting from './lib/iteration/licenseKeyFormatting';
 
 export {
   generateRandomNumbers,
@@ -34,4 +36,6 @@ export {
   mergeTwoSortedArrIntoOne,
   isPalindrome,
   climbStairs,
+  uniqueEmails,
+  licenseKeyFormatting,
 };
