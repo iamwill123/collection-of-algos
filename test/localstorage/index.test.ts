@@ -1,8 +1,10 @@
-import {
-  getLocalStorageData,
-  setLocalStorageData,
-  removeLocalStorageData,
-} from '../../src/lib/localstorage/index';
+import myLocalStorage from '../../src/lib/localstorage/index';
+
+const {
+  get: getLocalStorageData,
+  set: setLocalStorageData,
+  remove: removeLocalStorageData,
+} = myLocalStorage;
 
 // Mock the localStorage
 const localStorageMock = (function () {

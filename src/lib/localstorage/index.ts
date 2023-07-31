@@ -45,4 +45,10 @@ function removeLocalStorageData(key: string, subKey?: string): void {
   }
 }
 
-export { getLocalStorageData, setLocalStorageData, removeLocalStorageData };
+const myLocalStorage = {
+  get: getLocalStorageData,
+  set: setLocalStorageData,
+  remove: removeLocalStorageData,
+};
+
+export default myLocalStorage;

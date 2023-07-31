@@ -18,6 +18,7 @@ import climbStairs from './lib/recursion/climbingStairs';
 import uniqueEmails from './lib/iteration/uniqueEmails';
 import licenseKeyFormatting from './lib/iteration/licenseKeyFormatting';
 import fruitIntoBaskets from './lib/iteration/fruitIntoBaskets';
+import myLocalStorage from './lib/localstorage';
 
 export {
   generateRandomNumbers,
@@ -40,4 +41,5 @@ export {
   uniqueEmails,
   licenseKeyFormatting,
   fruitIntoBaskets,
+  myLocalStorage,
 };
