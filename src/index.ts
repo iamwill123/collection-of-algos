@@ -17,6 +17,7 @@ import isPalindrome from './lib/iteration/isPalindrome';
 import climbStairs from './lib/recursion/climbingStairs';
 import uniqueEmails from './lib/iteration/uniqueEmails';
 import licenseKeyFormatting from './lib/iteration/licenseKeyFormatting';
+import fruitIntoBaskets from './lib/iteration/fruitIntoBaskets';
 
 export {
   generateRandomNumbers,
@@ -38,4 +39,5 @@ export {
   climbStairs,
   uniqueEmails,
   licenseKeyFormatting,
+  fruitIntoBaskets,
 };

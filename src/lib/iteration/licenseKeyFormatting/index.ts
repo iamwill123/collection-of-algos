@@ -1,5 +1,5 @@
 /**
- * @module src/lib/iteration/licenseKeyFormatting
+ * @module licenseKeyFormatting
  * @param {string} s - The string to format
  * @param {number} k - The number of characters to group together
  * @returns {string} - The formatted string
