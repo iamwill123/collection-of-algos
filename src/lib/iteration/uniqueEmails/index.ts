@@ -1,4 +1,5 @@
 /**
+ * @module uniqueEmails
  * @param {string[]} emails
  * @return {object{}}
  */
